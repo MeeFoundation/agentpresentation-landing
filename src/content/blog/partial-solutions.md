@@ -1,4 +1,10 @@
-# Partial solutions
+---
+title: Partial solutions
+author: Paul Trevithick
+description: partial solutions description TBD
+featured: true
+pubDatetime: 2023-08-01T00:00:00Z
+---
 
 ## HTTP request header
 

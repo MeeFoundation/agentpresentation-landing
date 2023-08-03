@@ -1,4 +1,11 @@
-# The problem
+---
+title: The problem
+author: Paul Trevithick
+description: the problem description TBD
+featured: true
+pubDatetime: 2023-08-03T00:00:00Z
+---
+
 
 Many of us envision a future where people have personal agents that act as trusted digital intermediaries with apps/sites ("apps"). The agents rebalance the power relationship with the apps. They promise to automate tedious manual processes, and offer entirely new experiences, services, and entertainment, all while preserving privacy.
 

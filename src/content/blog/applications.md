@@ -1,4 +1,11 @@
-# Applications
+---
+title: Applications
+author: Paul Trevithick
+description: applications description TBD
+featured: true
+pubDatetime: 2023-08-02T00:00:00Z
+---
+
 
 ## Authentication 
 

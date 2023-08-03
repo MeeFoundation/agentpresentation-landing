@@ -1,36 +1,27 @@
 ---
 layout: ../layouts/AboutLayout.astro
-title: "About"
+title: "Agent Presentation"
 ---
 
-AstroPaper is a minimal, responsive and SEO-friendly Astro blog theme. I designed and crafted this based on [my personal blog](https://satnaing.dev/blog).
+Agent Presentation is a mechanism wherein the person's browser/OS presents to the app/site one or more tuples consisting of: {*protocol*, *agent-config*} where:
+- *protocol*: a string defining the protocol implemented by the agent. The string value is a member of a controlled vocabulary that is standardized by a standards body yet to be determined
+- *agent-config*: a URL that resolveds to an Agent Configuration File (ACF) in TOML syntax whose semantics are defined by the protocol
 
-This theme is aimed to be accessible out of the box. Light and dark mode are supported by
-default and additional color schemes can also be configured.
+## ACF file format
 
-This theme is self-documented \_ which means articles/posts in this theme can also be considered as documentations. So, see the documentation for more info.
+An ACF is a TOML format file. It has the following required field:
+- title - value must be 
+"Agent Configuration File"
+- version - a string indicating the version of the ACF file format
 
-<div>
-  <img src="/assets/dev.svg" class="sm:w-1/2 mx-auto" alt="coding dev illustration">
-</div>
+The rest of the fields in the ACF are determined by the protocol. Each protocol would have its own section of the ACF, followed by a set of zero or more fields.
 
-## Tech Stack
+## Web implementation
 
-This theme is written in vanilla JavaScript (+ TypeScript for type checking) and a little bit of ReactJS for some interactions. TailwindCSS is used for styling; and Markdown is used for blog contents.
+The "Agent" field is added by the browser to every HTTP request header:
 
-## Features
+    "Agent: <protocol>,<agentID>"
 
-Here are certain features of this site.
+## Mobile implementation
 
-- fully responsive and accessible
-- SEO-friendly
-- light & dark mode
-- fuzzy search
-- super fast performance
-- draft posts
-- pagination
-- sitemap & rss feed
-- highly customizable
-
-If you like this theme, you can star/contribute to the [repo](https://github.com/satnaing/astro-paper).  
-Or you can even give any feedback via my [email](mailto:contact@satnaing.dev).
+[To be determined. The mobile OS (iOS, Android, etc.) needs to pass the "Agent" tuples to the app on startup.]
