@@ -17,6 +17,9 @@ export default defineConfig({
     react(),
     sitemap(),
   ],
+  build: {
+    assets: 'assets'
+  },
   markdown: {
     remarkPlugins: [
       remarkToc,
