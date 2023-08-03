@@ -36,9 +36,17 @@ export default defineConfig({
     },
     extendDefaultPlugins: true,
   },
+  output: 'static',
   vite: {
     optimizeDeps: {
       exclude: ["@resvg/resvg-js"],
-    },
+    },    
+    build: {
+      rollupOptions: {
+        output: {
+          assetFileNames: 'assets/[name][extname]'
+        }
+      }
+    }
   },
 });
