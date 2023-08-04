@@ -5,7 +5,7 @@ export const SITE: Site = {
   author: "Paul Trevithick",
   desc: "Agent Presentation site",
   title: "Agent Presentation",
-  ogImage: "astropaper-og.jpg",
+  ogImage: "agent-presentation.jpg",
   lightAndDarkMode: true,
   postPerPage: 3,
 };
