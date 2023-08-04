@@ -3,7 +3,7 @@ layout: ../layouts/AboutLayout.astro
 title: "Agent Presentation"
 ---
 
-Agent Presentation is a mechanism wherein the person's browser/OS presents to the app/site one or more tuples consisting of: {*protocol*, *agent-config*} where:
+Agent Presentation is a mechanism wherein the person's browser/OS presents to the app/site one or more tuples of the form {"Agent", *protocol*, *agent-config*} where:
 - *protocol*: a string defining the protocol implemented by the agent. The string value is a member of a controlled vocabulary that is standardized by a standards body yet to be determined
 - *agent-config*: a URL that resolveds to an Agent Configuration File (ACF) in TOML syntax whose semantics are defined by the protocol
 
