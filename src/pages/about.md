@@ -9,7 +9,7 @@ Agent Presentation is a mechanism wherein the person's browser/OS presents to th
 
 ## ACF file format
 
-An ACF is a TOML format file. It has the following required field:
+An ACF is a TOML format file. It has the following required fields:
 - title - value must be 
 "Agent Configuration File"
 - version - a string indicating the version of the ACF file format
