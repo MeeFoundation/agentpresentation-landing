@@ -1,7 +1,7 @@
 ---
 title: Applications
 author: Paul Trevithick
-description: applications description TBD
+description: We describe a few use cases where Agent Presentation could be used
 featured: true
 pubDatetime: 2023-08-02T00:00:00Z
 ---

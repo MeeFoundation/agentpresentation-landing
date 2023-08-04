@@ -1,7 +1,7 @@
 ---
 title: Partial solutions
 author: Paul Trevithick
-description: partial solutions description TBD
+description: We discuss the age-old partial solution, the HTTP request header
 featured: true
 pubDatetime: 2023-08-01T00:00:00Z
 ---

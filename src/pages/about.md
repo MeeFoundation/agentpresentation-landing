@@ -24,4 +24,4 @@ The "Agent" field is added by the browser to every HTTP request header:
 
 ## Mobile implementation
 
-[To be determined. The mobile OS (iOS, Android, etc.) needs to pass the "Agent" tuples to the app on startup.]
+[To be determined. The mobile OS (iOS, Android, etc.) needs to pass the "Agent" tuples to the app on startup. Perhaps on Android the  [Content Provider] (https://developer.android.com/reference/android/content/ContentProvider) API could be used.]
