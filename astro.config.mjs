@@ -20,6 +20,9 @@ export default defineConfig({
   build: {
     assets: 'assets'
   },
+  experimental: {
+    assets: true
+  },  
   markdown: {
     remarkPlugins: [
       remarkToc,
