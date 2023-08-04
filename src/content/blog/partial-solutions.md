@@ -2,7 +2,7 @@
 title: Partial solutions
 author: Paul Trevithick
 description: We discuss the age-old partial solution, the HTTP request header
-featured: true
+featured: false
 pubDatetime: 2023-08-01T00:00:00Z
 ---
 
