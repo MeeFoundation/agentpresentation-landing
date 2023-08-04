@@ -30,7 +30,7 @@ This problem has not been solved in a general way, although partial solutions ex
 
 An app instead of, or in addition to, authenticating the person using a username and password may wish to rely on external authentication mechanisms (e.g. Continue-with-Facebook) to authorize the person. For each supported option the website displays a buttton. If there are too many options the resulting site starts to look like a car at NASCAR. Too many options is ugly, confusing, and inconvenient.
 
-![](https://hackmd.io/_uploads/r1jmwT8tn.png)
+![nascar](../../assets/nascar.png)
 
 Why so many? Because some authentication methods (e.g. OpenID Connect) use a standard protocol that can be implemented by any number of IdPs. For example, there are dozens of OpenID Connect IdPs each with its own logo-ed button such as Continue-with-Google, Continue-with-Twitter, -Apple, -Facebook, -LinkedIn, and so on. 
 
