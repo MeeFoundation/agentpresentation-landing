@@ -34,7 +34,7 @@ An app instead of, or in addition to, authenticating the person using a username
 
 Why so many? Because some authentication methods (e.g. OpenID Connect) use a standard protocol that can be implemented by any number of IdPs. For example, there are dozens of OpenID Connect IdPs each with its own logo-ed button such as Continue-with-Google, Continue-with-Twitter, -Apple, -Facebook, -LinkedIn, and so on. 
 
-![](https://hackmd.io/_uploads/H1SWElDt3.jpg)
+![social-login-examples](../../assets/social-login-examples.jpeg)
 
 The problem is exacerbated by new protocols like OpenID SIOP that allow each person to have a *personal IdP* (aka a wallet) from one of hundreds of wallet providers. 
 
