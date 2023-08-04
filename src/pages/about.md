@@ -3,12 +3,16 @@ layout: ../layouts/AboutLayout.astro
 title: "Agent Presentation"
 ---
 
-# Agent Presentation
+# Specification
 
-Agent Presentation is a mechanism wherein the person's browser/OS presents to an app/site one or more tuples of the form {"Agent", *protocol*, *agent-config*} where:
+Agent Presentation is a specification that defines how the person's browser/OS presents to an app/site information about the person's agents. 
+
+ one or more tuples of the form {"Agent", *protocol*, *agent-config*} where:
 
 - *protocol*: a string defining the protocol implemented by the agent. Values are one of {"SIOPv2", "AgeProtectv1"}
 - *agent-config*: a URL that resolves to an Agent Configuration File
+
+Note: that the person's browser/OS could be configured to present a different set of tuples to different apps.
 
 #### Web implementation
 
