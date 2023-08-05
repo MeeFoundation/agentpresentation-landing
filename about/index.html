@@ -2,7 +2,7 @@
     <meta charset="UTF-8">
     <meta content="width=device-width" name="viewport">
     <link href="/favicon.svg" rel="icon" type="image/svg+xml">
-    <link href="https://astro-paper.pages.dev/about/" rel="canonical">
+    <link href="https://agentpresentation.org/about/" rel="canonical">
     <meta content="Astro v2.10.0" name="generator">
 
     <!-- General Meta Tags -->
@@ -15,15 +15,15 @@
     <!-- Open Graph / Facebook -->
     <meta content="Agent Presentation | Agent Presentation" property="og:title">
     <meta content="Agent Presentation site" property="og:description">
-    <meta content="https://astro-paper.pages.dev/about/" property="og:url">
-    <meta content="https://astro-paper.pages.dev/agent-presentation.jpg" property="og:image">
+    <meta content="https://agentpresentation.org/about/" property="og:url">
+    <meta content="https://agentpresentation.org/agent-presentation.jpg" property="og:image">
 
     <!-- Twitter -->
     <meta content="summary_large_image" property="twitter:card">
-    <meta content="https://astro-paper.pages.dev/about/" property="twitter:url">
+    <meta content="https://agentpresentation.org/about/" property="twitter:url">
     <meta content="Agent Presentation | Agent Presentation" property="twitter:title">
     <meta content="Agent Presentation site" property="twitter:description">
-    <meta content="https://astro-paper.pages.dev/agent-presentation.jpg" property="twitter:image">
+    <meta content="https://agentpresentation.org/agent-presentation.jpg" property="twitter:image">
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com" rel="preconnect">
@@ -38,10 +38,10 @@
   <body>
     
   <header class="astro-3EF6KSR2">
-  <a class="astro-3EF6KSR2" href="#main-content" id="skip-to-content">Skip to content</a>
+  <a href="#main-content" class="astro-3EF6KSR2" id="skip-to-content">Skip to content</a>
   <div class="astro-3EF6KSR2 nav-container">
     <div class="astro-3EF6KSR2 top-nav-wrap">
-      <a class="astro-3EF6KSR2 logo" href="/">
+      <a href="/" class="astro-3EF6KSR2 logo">
         Agent Presentation
       </a>
       <nav class="astro-3EF6KSR2" id="nav-menu">
@@ -56,7 +56,7 @@
         </button>
         <ul class="astro-3EF6KSR2 display-none sm:flex" id="menu-items">
           <li class="astro-3EF6KSR2">
-            <a class="astro-3EF6KSR2" href="/posts">
+            <a href="/posts" class="astro-3EF6KSR2">
               Posts
             </a>
           </li>
@@ -66,12 +66,12 @@
             </a>
           </li> -->
           <li class="astro-3EF6KSR2">
-            <a class="astro-3EF6KSR2 active" href="/about">
+            <a href="/about" class="astro-3EF6KSR2 active">
               About
             </a>
           </li>
           <li class="astro-3EF6KSR2">
-            <a class="astro-3EF6KSR2 focus-outline astro-5EUNQZKT group inline-block p-3 sm:p-1" href="/search" aria-label="search" tabindex="0" title="Search">
+            <a href="/search" class="astro-3EF6KSR2 focus-outline astro-5EUNQZKT group inline-block p-3 sm:p-1" aria-label="search" tabindex="0" title="Search">
   
               <svg class="astro-3EF6KSR2 scale-125 sm:scale-100" xmlns="http://www.w3.org/2000/svg"><path class="astro-3EF6KSR2" d="M19.023 16.977a35.13 35.13 0 0 1-1.367-1.384c-.372-.378-.596-.653-.596-.653l-2.8-1.337A6.962 6.962 0 0 0 16 9c0-3.859-3.14-7-7-7S2 5.141 2 9s3.14 7 7 7c1.763 0 3.37-.66 4.603-1.739l1.337 2.8s.275.224.653.596c.387.363.896.854 1.384 1.367l1.358 1.392.604.646 2.121-2.121-.646-.604c-.379-.372-.885-.866-1.391-1.36zM9 14c-2.757 0-5-2.243-5-5s2.243-5 5-5 5 2.243 5 5-2.243 5-5 5z"></path>
               </svg>
@@ -99,7 +99,7 @@
   <nav class="astro-ILHXCYM7 breadcrumb" aria-label="breadcrumb">
   <ul class="astro-ILHXCYM7">
     <li class="astro-ILHXCYM7">
-      <a class="astro-ILHXCYM7" href="/">Home</a>
+      <a href="/" class="astro-ILHXCYM7">Home</a>
       <span class="astro-ILHXCYM7" aria-hidden="true">&gt;</span>
     </li>
     <li class="astro-ILHXCYM7">
@@ -113,24 +113,26 @@
   <main id="main-content">
     <section class="max-w-3xl mb-28 prose prose-img:border-0" id="about">
       <h1 class="sm:text-3xl text-2xl tracking-wider">Agent Presentation</h1>
-      <p>Agent Presentation is a mechanism wherein the person’s browser/OS presents to the app/site one or more tuples consisting of: {<em>protocol</em>, <em>agent-config</em>} where:</p>
+      <h1 id="specification">Specification</h1>
+<p>Agent Presentation is a specification that defines how the person’s browser/OS presents to an app/site information about the person’s agents.</p>
+<p>one or more tuples of the form {“Agent”, <em>protocol</em>, <em>agent-config-url</em>} where:</p>
 <ul>
-<li><em>protocol</em>: a string defining the protocol implemented by the agent. The string value is a member of a controlled vocabulary that is standardized by a standards body yet to be determined</li>
-<li><em>agent-config</em>: a URL that resolveds to an Agent Configuration File (ACF) in TOML syntax whose semantics are defined by the protocol</li>
+<li><em>protocol</em>: a string defining the protocol implemented by the agent. Values are one of {“SIOPv2”, “AgeProtectv1”}</li>
+<li><em>agent-config-url</em>: a URL that resolves to an Agent Configuration File</li>
 </ul>
-<h2 id="acf-file-format">ACF file format</h2>
-<p>An ACF is a TOML format file. It has the following required field:</p>
-<ul>
-<li>title - value must be
-“Agent Configuration File”</li>
-<li>version - a string indicating the version of the ACF file format</li>
-</ul>
-<p>The rest of the fields in the ACF are determined by the protocol. Each protocol would have its own section of the ACF, followed by a set of zero or more fields.</p>
-<h2 id="web-implementation">Web implementation</h2>
+<p>Note: that the person’s browser/OS could be configured to present a different set of tuples to different apps.</p>
+<h4 id="web-implementation">Web implementation</h4>
 <p>The “Agent” field is added by the browser to every HTTP request header:</p>
-<pre class="astro-code one-dark-pro" is:raw="" style="white-space:pre-wrap;word-wrap:break-word;background-color:#282c34;overflow-x:auto" tabindex="0"><code><span class="line"><span style="color:#abb2bf">"Agent: &lt;protocol&gt;,&lt;agentID&gt;"</span></span></code></pre>
-<h2 id="mobile-implementation">Mobile implementation</h2>
-<p>[To be determined. The mobile OS (iOS, Android, etc.) needs to pass the “Agent” tuples to the app on startup.]</p>
+<pre class="astro-code one-dark-pro" is:raw="" style="white-space:pre-wrap;word-wrap:break-word;background-color:#282c34;overflow-x:auto" tabindex="0"><code><span class="line"><span style="color:#abb2bf">"Agent: &lt;protocol&gt;,&lt;agent-config-url&gt;"</span></span></code></pre>
+<h4 id="mobile-implementation">Mobile implementation</h4>
+<p>[To be determined. The mobile OS (iOS, Android, etc.) needs to pass the “Agent” tuples to the app on startup. Perhaps on Android the  [Content Provider] (<a href="https://developer.android.com/reference/android/content/ContentProvider">https://developer.android.com/reference/android/content/ContentProvider</a>) API could be used.]</p>
+<h2 id="agent-configuration-file-acf">Agent Configuration File (ACF)</h2>
+<p>An ACF is a TOML format file that has the following required fields:</p>
+<ul>
+<li><em>title</em> - a string of value “Agent Configuration File”</li>
+<li><em>version</em> - a string indicating the version of the ACF file format</li>
+</ul>
+<p>The rest of the fields in the file are determined by the protocol. Each protocol has its own section of the ACF (e.g. “[SIOPv2]”),  followed by a set of zero or more fields and values.</p>
     </section>
   </main>
   <footer class="astro-SZ7XMLTE mt-auto">
