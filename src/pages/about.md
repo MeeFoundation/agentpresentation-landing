@@ -18,7 +18,7 @@ Note: that the person's browser/OS could be configured to present a different se
 
 The "Agent" field is added by the browser to every HTTP request header:
 
-    "Agent: <protocol>,<agentID>"
+    "Agent: <protocol>,<agent-config>"
 
 #### Mobile implementation
 
