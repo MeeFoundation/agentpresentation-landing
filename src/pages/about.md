@@ -7,10 +7,10 @@ title: "Agent Presentation"
 
 Agent Presentation is a specification that defines how the person's browser/OS presents to an app/site information about the person's agents. 
 
- one or more tuples of the form {"Agent", *protocol*, *agent-config-url*} where:
+ one or more tuples of the form {"Agent", *protocol*, *configl*} where:
 
 - *protocol*: a string defining the protocol implemented by the agent. Values are one of {"SIOPv2", "AgeProtectv1"}
-- *agent-config-url*: a URL that resolves to an Agent Configuration File
+- *config*: a URL that resolves to an Agent Configuration File
 
 Note: that the person's browser/OS could be configured to present a different set of tuples to different apps.
 
@@ -18,7 +18,11 @@ Note: that the person's browser/OS could be configured to present a different se
 
 The "Agent" field is added by the browser to every HTTP request header:
 
-    "Agent: <protocol>,<agent-config-url>"
+	"Agent: <protocol>,<config>"
+
+**Example**
+
+	"Agent: OpenIDConnect, https://google.com/acf.toml"`
 
 #### Mobile implementation
 
@@ -32,4 +36,13 @@ An ACF is a TOML format file that has the following required fields:
 - *version* - a string indicating the version of the ACF file format
 
 The rest of the fields in the file are determined by the protocol. Each protocol has its own section of the ACF (e.g. "[SIOPv2]"),  followed by a set of zero or more fields and values.
+
+**ACF Example** 
+
+`title = "Agent Configuration File"`
+`version = "1.0"  #version of Agent Presentaion used by this file (e.g. 1.0)`
+
+`[SIOPv2]`
+`image = "https://mee.foundation/continue-with-mee-smartwallet.png"`
+`SIOPAuthorize = "https://mee.foundation/authorize"`
 

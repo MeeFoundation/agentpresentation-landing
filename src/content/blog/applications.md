@@ -31,13 +31,13 @@ The ACF file:
     # Sample Agent Configuration File
     
     title = "Agent Configuration File"
-    version = "1.0"  #version of SCF used by this file
+    version = "1.0"  #version of Agent Presentaion used by this file (e.g. 1.0)
     
     [SIOPv2]
-    image = "https://mee.foundation/connect-with-mee.png"
-    SIOPAuthorize = "https://mee.foundation/authorize" 
+    image = "https://mee.foundation/continue-with-mee-smartwallet.png"
+    SIOPAuthorize = "https://mee.foundation/authorize"
 
-The site reads the "Agent" header field, dereferences the agent-config URL and reads the ACF. It reads the "image" field to find the button image to display. It reads the SIOPAuthorize field to get the invocation URL. It presents a "Connect-with-Mee" button linked to https://mee.foundation/authorize. The person presses this button, and the wallet is connected.
+The site reads the "Agent" header field, dereferences the config URL and reads the ACF. It reads the "image" field to find the button image to display. It reads the SIOPAuthorize field to get the invocation URL. It presents a "Continue-with-Mee-Smartwallet" button linked to https://mee.foundation/authorize. The person presses this button, and is logged via their Mee Smartwallet.
 
 ## Age Protect
 
@@ -45,4 +45,4 @@ Assume the person is a minor that has a wallet that supports Age Protect. Assume
 
     "Agent: AgeProtect, https://mee.foundation/acf.toml"
 
-The site reads the Agent field and then the AgeProtect protocol value. The site can read the acf file, find the value of the "image" field, and display a button asking the minor to verify their age by pressing the button. Doing so will request that the minor's wallet present a VC with the requisite age information per the Age Protect spec.
+The site reads the Agent field and then the AgeProtect protocol value. The site can read the config file, find the value of the "image" field, and display a "Verify Age" button. Tapping this buttonwill request that the minor's wallet present a VC (called an Age Verification Record (AVR)) with the requisite age information per the Age Protect spec.
