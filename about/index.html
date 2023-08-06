@@ -115,15 +115,17 @@
       <h1 class="sm:text-3xl text-2xl tracking-wider">Agent Presentation</h1>
       <h1 id="specification">Specification</h1>
 <p>Agent Presentation is a specification that defines how the person’s browser/OS presents to an app/site information about the person’s agents.</p>
-<p>one or more tuples of the form {“Agent”, <em>protocol</em>, <em>agent-config-url</em>} where:</p>
+<p>one or more tuples of the form {“Agent”, <em>protocol</em>, <em>configl</em>} where:</p>
 <ul>
 <li><em>protocol</em>: a string defining the protocol implemented by the agent. Values are one of {“SIOPv2”, “AgeProtectv1”}</li>
-<li><em>agent-config-url</em>: a URL that resolves to an Agent Configuration File</li>
+<li><em>config</em>: a URL that resolves to an Agent Configuration File</li>
 </ul>
 <p>Note: that the person’s browser/OS could be configured to present a different set of tuples to different apps.</p>
 <h4 id="web-implementation">Web implementation</h4>
 <p>The “Agent” field is added by the browser to every HTTP request header:</p>
-<pre class="astro-code one-dark-pro" is:raw="" style="white-space:pre-wrap;word-wrap:break-word;background-color:#282c34;overflow-x:auto" tabindex="0"><code><span class="line"><span style="color:#abb2bf">"Agent: &lt;protocol&gt;,&lt;agent-config-url&gt;"</span></span></code></pre>
+<pre class="astro-code one-dark-pro" is:raw="" style="white-space:pre-wrap;word-wrap:break-word;background-color:#282c34;overflow-x:auto" tabindex="0"><code><span class="line"><span style="color:#abb2bf">"Agent: &lt;protocol&gt;,&lt;config&gt;"</span></span></code></pre>
+<p><strong>Example</strong></p>
+<pre class="astro-code one-dark-pro" is:raw="" style="white-space:pre-wrap;word-wrap:break-word;background-color:#282c34;overflow-x:auto" tabindex="0"><code><span class="line"><span style="color:#abb2bf">"Agent: OpenIDConnect, https://google.com/acf.toml"`</span></span></code></pre>
 <h4 id="mobile-implementation">Mobile implementation</h4>
 <p>[To be determined. The mobile OS (iOS, Android, etc.) needs to pass the “Agent” tuples to the app on startup. Perhaps on Android the  [Content Provider] (<a href="https://developer.android.com/reference/android/content/ContentProvider">https://developer.android.com/reference/android/content/ContentProvider</a>) API could be used.]</p>
 <h2 id="agent-configuration-file-acf">Agent Configuration File (ACF)</h2>
@@ -133,6 +135,12 @@
 <li><em>version</em> - a string indicating the version of the ACF file format</li>
 </ul>
 <p>The rest of the fields in the file are determined by the protocol. Each protocol has its own section of the ACF (e.g. “[SIOPv2]”),  followed by a set of zero or more fields and values.</p>
+<p><strong>ACF Example</strong></p>
+<p><code>title = "Agent Configuration File"</code>
+<code>version = "1.0"  #version of Agent Presentaion used by this file (e.g. 1.0)</code></p>
+<p><code>[SIOPv2]</code>
+<code>image = "https://mee.foundation/continue-with-mee-smartwallet.png"</code>
+<code>SIOPAuthorize = "https://mee.foundation/authorize"</code></p>
     </section>
   </main>
   <footer class="astro-SZ7XMLTE mt-auto">

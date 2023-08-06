@@ -36,9 +36,9 @@
   <link href="/assets/about.css" rel="stylesheet">
 <link href="/assets/about-1.css" rel="stylesheet">
 <link href="/assets/posts-_slug_.css" rel="stylesheet">
-<link href="/assets/posts-_slug_-3.css" rel="stylesheet">
+<link href="/assets/posts-_slug_-1.css" rel="stylesheet">
 <link href="/assets/posts-_slug_-2.css" rel="stylesheet">
-<link href="/assets/posts-_slug_-1.css" rel="stylesheet"><script type="module">const e=document.querySelector(".hamburger-menu"),n=document.querySelector(".menu-icon"),u=document.querySelector("#menu-items");e?.addEventListener("click",()=>{let t="true"===e.getAttribute("aria-expanded");n?.classList.toggle("is-active"),e.setAttribute("aria-expanded",t?"false":"true"),e.setAttribute("aria-label",t?"Open Menu":"Close Menu"),u?.classList.toggle("display-none")});</script></head>
+<link href="/assets/posts-_slug_-3.css" rel="stylesheet"><script type="module">const e=document.querySelector(".hamburger-menu"),n=document.querySelector(".menu-icon"),u=document.querySelector("#menu-items");e?.addEventListener("click",()=>{let t="true"===e.getAttribute("aria-expanded");n?.classList.toggle("is-active"),e.setAttribute("aria-expanded",t?"false":"true"),e.setAttribute("aria-label",t?"Open Menu":"Close Menu"),u?.classList.toggle("display-none")});</script></head>
   <body>
     
   <header class="astro-3EF6KSR2">
@@ -124,16 +124,16 @@
 <pre class="astro-code one-dark-pro" is:raw="" style="white-space:pre-wrap;word-wrap:break-word;background-color:#282c34;overflow-x:auto" tabindex="0"><code><span class="line"><span style="color:#abb2bf"># Sample Agent Configuration File</span></span>
 <span class="line"><span style="color:#abb2bf"></span></span>
 <span class="line"><span style="color:#abb2bf">title = "Agent Configuration File"</span></span>
-<span class="line"><span style="color:#abb2bf">version = "1.0"  #version of SCF used by this file</span></span>
+<span class="line"><span style="color:#abb2bf">version = "1.0"  #version of Agent Presentaion used by this file (e.g. 1.0)</span></span>
 <span class="line"><span style="color:#abb2bf"></span></span>
 <span class="line"><span style="color:#abb2bf">[SIOPv2]</span></span>
-<span class="line"><span style="color:#abb2bf">image = "https://mee.foundation/connect-with-mee.png"</span></span>
-<span class="line"><span style="color:#abb2bf">SIOPAuthorize = "https://mee.foundation/authorize" </span></span></code></pre>
-<p>The site reads the “Agent” header field, dereferences the agent-config URL and reads the ACF. It reads the “image” field to find the button image to display. It reads the SIOPAuthorize field to get the invocation URL. It presents a “Connect-with-Mee” button linked to <a href="https://mee.foundation/authorize">https://mee.foundation/authorize</a>. The person presses this button, and the wallet is connected.</p>
+<span class="line"><span style="color:#abb2bf">image = "https://mee.foundation/continue-with-mee-smartwallet.png"</span></span>
+<span class="line"><span style="color:#abb2bf">SIOPAuthorize = "https://mee.foundation/authorize"</span></span></code></pre>
+<p>The site reads the “Agent” header field, dereferences the config URL and reads the ACF. It reads the “image” field to find the button image to display. It reads the SIOPAuthorize field to get the invocation URL. It presents a “Continue-with-Mee-Smartwallet” button linked to <a href="https://mee.foundation/authorize">https://mee.foundation/authorize</a>. The person presses this button, and is logged via their Mee Smartwallet.</p>
 <h2 id="age-protect">Age Protect</h2>
 <p>Assume the person is a minor that has a wallet that supports Age Protect. Assume they visit a site that also supports Age Protect. The minor has configured their user agent to include the following HTTP header field:</p>
 <pre class="astro-code one-dark-pro" is:raw="" style="white-space:pre-wrap;word-wrap:break-word;background-color:#282c34;overflow-x:auto" tabindex="0"><code><span class="line"><span style="color:#abb2bf">"Agent: AgeProtect, https://mee.foundation/acf.toml"</span></span></code></pre>
-<p>The site reads the Agent field and then the AgeProtect protocol value. The site can read the acf file, find the value of the “image” field, and display a button asking the minor to verify their age by pressing the button. Doing so will request that the minor’s wallet present a VC with the requisite age information per the Age Protect spec.</p>
+<p>The site reads the Agent field and then the AgeProtect protocol value. The site can read the config file, find the value of the “image” field, and display a “Verify Age” button. Tapping this buttonwill request that the minor’s wallet present a VC (called an Age Verification Record (AVR)) with the requisite age information per the Age Protect spec.</p>
     </article>
 
     <ul class="astro-VJ4TPSPI tags-container">
