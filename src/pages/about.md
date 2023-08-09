@@ -10,7 +10,7 @@ Agent Presentation is a specification that defines how a person's browser/OS pre
 - *protocol*: a string defining the protocol implemented by the agent. Values are one of {"SIOPv2", "AgeProtectv1"}
 - *config*: a URL that resolves to an Agent Configuration File
 
-Note: that the person's browser/OS could be configured to present a different set of tuples to different apps.
+Note: the person's browser/OS could be configured to present a different set of tuples to different apps.
 
 #### Web implementation
 
