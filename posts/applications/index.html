@@ -36,9 +36,9 @@
   <link href="/assets/about.css" rel="stylesheet">
 <link href="/assets/about-1.css" rel="stylesheet">
 <link href="/assets/posts-_slug_.css" rel="stylesheet">
-<link href="/assets/posts-_slug_-1.css" rel="stylesheet">
 <link href="/assets/posts-_slug_-3.css" rel="stylesheet">
-<link href="/assets/posts-_slug_-2.css" rel="stylesheet"><script type="module">const e=document.querySelector(".hamburger-menu"),n=document.querySelector(".menu-icon"),u=document.querySelector("#menu-items");e?.addEventListener("click",()=>{let t="true"===e.getAttribute("aria-expanded");n?.classList.toggle("is-active"),e.setAttribute("aria-expanded",t?"false":"true"),e.setAttribute("aria-label",t?"Open Menu":"Close Menu"),u?.classList.toggle("display-none")});</script></head>
+<link href="/assets/posts-_slug_-2.css" rel="stylesheet">
+<link href="/assets/posts-_slug_-1.css" rel="stylesheet"><script type="module">const e=document.querySelector(".hamburger-menu"),n=document.querySelector(".menu-icon"),u=document.querySelector("#menu-items");e?.addEventListener("click",()=>{let t="true"===e.getAttribute("aria-expanded");n?.classList.toggle("is-active"),e.setAttribute("aria-expanded",t?"false":"true"),e.setAttribute("aria-label",t?"Open Menu":"Close Menu"),u?.classList.toggle("display-none")});</script></head>
   <body>
     
   <header class="astro-3EF6KSR2">
@@ -111,14 +111,12 @@
     <div class="astro-VJ4TPSPI flex items-center my-2 opacity-80 space-x-2"><svg class="inline-block fill-skin-base h-6 scale-100 w-6" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M7 11h2v2H7zm0 4h2v2H7zm4-4h2v2h-2zm0 4h2v2h-2zm4-4h2v2h-2zm0 4h2v2h-2z"></path><path d="M5 22h14c1.103 0 2-.897 2-2V6c0-1.103-.897-2-2-2h-2V2h-2v2H9V2H7v2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2zM19 8l.001 12H5V8h14z"></path></svg><span class="sr-only">Posted on:</span><span class="italic text-base">August 2, 2023<span aria-hidden="true"> | </span><span class="sr-only">&nbsp;at&nbsp;</span>12:00 AM</span></div>
     <article class="astro-VJ4TPSPI max-w-3xl mx-auto mt-8 prose" id="article" role="article">
       <h2 id="authentication">Authentication</h2>
-<p>Assume the person has a Google and Apple account. And assume that the website the person visits supports OpenID Connect and has integrated Google, Apple, Facebook and LinkedIn.</p>
-<p>The browser/OS is configured to include the following HTTP header fields:</p>
+<p>Assume a person has a Google and an Twitter account. Now assume they visit a website that supports four OpenID Connect authentication “agents”, namely, Google, Apple, Facebook and LinkedIn. The person (using some kind tool (e.g. a browser extension, etc.)) could configure their browser to include these two HTTP header fields to “present” the fact that these are the two authentication “agent”/methods that they’d like to use:</p>
 <pre class="astro-code one-dark-pro" is:raw="" style="white-space:pre-wrap;word-wrap:break-word;background-color:#282c34;overflow-x:auto" tabindex="0"><code><span class="line"><span style="color:#abb2bf">"Agent: OpenIDConnect, https://google.com/acf.toml"</span></span>
-<span class="line"><span style="color:#abb2bf">"Agent: OpenIDConnect, https://apple.com/acf.toml"</span></span></code></pre>
-<p>The site reads these fields and displays a “Continue with Google” button and a “Continue with Facebook” button.</p>
+<span class="line"><span style="color:#abb2bf">"Agent: OpenIDConnect, https://twitter.com/acf.toml"</span></span></code></pre>
+<p>An Agent Presentation-compatible website would reads these fields, realize that it supports one of the two options (Google) and display one “Continue with Google” button. It would read the image data for this button from <a href="https://google.com/acf.toml">https://google.com/acf.toml</a> in the OpenIDConnect section. In this way the website’s log in page isn’t cluttered with three extra buttons/options (Apple, Facebook, LinkedIn) that the person can’t use. Instead it displays the one button (Google) that the user can use.</p>
 <h2 id="digital-wallets">Digital wallets</h2>
-<p>Assume the person has a Mee smartwallet installed on their mobile phone. Assume the website the person visits supports OpenID SIOPv2.</p>
-<p>The person configures their browser/OS to include the following HTTP header field:</p>
+<p>Assume the person has a Mee smartwallet installed on their mobile phone. Now assume they visite a website that supports OpenID SIOPv2. The person configures their browser to include the following HTTP header field:</p>
 <pre class="astro-code one-dark-pro" is:raw="" style="white-space:pre-wrap;word-wrap:break-word;background-color:#282c34;overflow-x:auto" tabindex="0"><code><span class="line"><span style="color:#abb2bf">"Agent: SIOPv2, https://mee.foundation/acf.toml"</span></span></code></pre>
 <p>The ACF file:</p>
 <pre class="astro-code one-dark-pro" is:raw="" style="white-space:pre-wrap;word-wrap:break-word;background-color:#282c34;overflow-x:auto" tabindex="0"><code><span class="line"><span style="color:#abb2bf"># Sample Agent Configuration File</span></span>
@@ -131,7 +129,7 @@
 <span class="line"><span style="color:#abb2bf">SIOPAuthorize = "https://mee.foundation/authorize"</span></span></code></pre>
 <p>The site reads the “Agent” header field, dereferences the config URL and reads the ACF. It reads the “image” field to find the button image to display. It reads the SIOPAuthorize field to get the invocation URL. It presents a “Continue-with-Mee-Smartwallet” button linked to <a href="https://mee.foundation/authorize">https://mee.foundation/authorize</a>. The person presses this button, and is logged via their Mee Smartwallet.</p>
 <h2 id="age-protect">Age Protect</h2>
-<p>Assume the person is a minor that has a wallet that supports Age Protect. Assume they visit a site that also supports Age Protect. The minor has configured their user agent to include the following HTTP header field:</p>
+<p>Assume the person is a minor that has a wallet that supports Age Protect. Now assume they visit a site that also supports Age Protect. The minor has configured their user agent to include the following HTTP header field:</p>
 <pre class="astro-code one-dark-pro" is:raw="" style="white-space:pre-wrap;word-wrap:break-word;background-color:#282c34;overflow-x:auto" tabindex="0"><code><span class="line"><span style="color:#abb2bf">"Agent: AgeProtect, https://mee.foundation/acf.toml"</span></span></code></pre>
 <p>The site reads the Agent field and then the AgeProtect protocol value. The site can read the config file, find the value of the “image” field, and display a “Verify Age” button. Tapping this buttonwill request that the minor’s wallet present a VC (called an Age Verification Record (AVR)) with the requisite age information per the Age Protect spec.</p>
     </article>
