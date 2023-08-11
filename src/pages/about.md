@@ -5,7 +5,7 @@ title: "Agent Presentation"
 
 # Specification
 
-Agent Presentation is a specification that defines how a person's browser/OS presents to an app/site information about that person's agents. It does so by conveying to the app/site one or more triples of the form {"Agent", *protocol*, *config*} where:
+Agent Presentation is a specification that defines how a person’s browser/OS presents information about that person’s agents to a website or app. It does so by conveying to the app/site one or more triples of the form {"Agent", *protocol*, *config*} where:
 
 - *protocol*: a string defining the protocol implemented by the agent. Values are one of {"SIOPv2", "AgeProtectv1"}
 - *config*: a URL that resolves to an Agent Configuration File
