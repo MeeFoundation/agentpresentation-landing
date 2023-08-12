@@ -16,9 +16,9 @@ Assume a person has a Google and an Twitter account. Now assume they visit a web
 
 An Agent Presentation-compatible website would reads these fields, realize that it supports one of the two options (Google) and display one "Continue with Google" button. It would read the image data for this button from https://google.com/acf.toml in the OpenIDConnect section. In this way the website's log in page isn't cluttered with three extra buttons/options (Apple, Facebook, LinkedIn) that the person can't use. Instead it displays the one button (Google) that the user can use.
 
-## Digital wallets
+## Digital wallet
 
-Assume the person has a Mee smartwallet installed on their mobile phone. Now assume they visite a website that supports OpenID SIOPv2. The person configures their browser to include the following HTTP header field:
+Assume a person has a Mee smartwallet installed on their mobile phone. Now assume they visite a website that supports OpenID SIOPv2. The person configures their browser to include the following HTTP header field:
 
     "Agent: SIOPv2, https://mee.foundation/acf.toml"
 
@@ -37,8 +37,28 @@ The site reads the "Agent" header field, dereferences the config URL and reads t
 
 ## Age Protect
 
-Assume the person is a minor that has a wallet that supports Age Protect. Now assume they visit a site that also supports Age Protect. The minor has configured their user agent to include the following HTTP header field:
+Assume a person is a minor that wants to send the "Age Protect" signal to websites they visit. The minor has previously installed a browser extention that causes the browser to include the following HTTP header field:
 
-    "Agent: AgeProtect, https://mee.foundation/acf.toml"
+    "Agent: AgeProtect"
 
-The site reads the Agent field and then the AgeProtect protocol value. The site can read the config file, find the value of the "image" field, and display a "Verify Age" button. Tapping this buttonwill request that the minor's wallet present a VC (called an Age Verification Record (AVR)) with the requisite age information per the Age Protect spec.
+The site reads this Agent field and the "AgeProtect" protocol value. This tells the site to verify the age of the minor by requesting that the minor present an Age Protect-compatible Age Verification Record (AVR) Verifiable Credential from a digital wallet. 
+
+Taking this example a bit further, if the minor already has a relationship with a specific age verification provider, e.g. PRIVO, they could configure their browser extension to send an enriched HTTP header field:
+
+    "Agent: AgeProtect, https://privo.com/age-protect/age-protect.acf"
+
+The age-protect.acf file would contain 
+
+file: 
+
+    # Sample Agent Configuration File
+    
+    title = "Agent Configuration File"
+    version = "1.0"  #version of Agent Presentaion used by this file (e.g. 1.0)
+    
+    [AgeProtect]
+    image = "https://privo.com/verify-with-PRIVO.png"
+    AVRissuanceURL = "https://privo.com/age-protect/issue-a"
+
+
+
