@@ -47,9 +47,7 @@ Taking this example a bit further, if the minor already has a relationship with 
 
     "Agent: AgeProtect, https://privo.com/age-protect/age-protect.acf"
 
-The age-protect.acf file would contain 
-
-file: 
+The age-protect.acf file would contain: 
 
     # Sample Agent Configuration File
     
@@ -58,7 +56,7 @@ file:
     
     [AgeProtect]
     image = "https://privo.com/verify-with-PRIVO.png"
-    AVRissuanceURL = "https://privo.com/age-protect/issue-a"
+    AVRissuanceURL = "https://privo.com/age-protect/issue-avr.html"
 
 
 
