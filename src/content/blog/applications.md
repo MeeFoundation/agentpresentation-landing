@@ -58,5 +58,5 @@ The age-protect.acf file would contain:
     image = "https://privo.com/verify-with-PRIVO.png"
     AVRissuanceURL = "https://privo.com/age-protect/issue-avr.html"
 
-
+This allows the website to display a Privo-branded "Verify Age with PRIVO" button, which when tapped resolves to the AVRissuanceURL.
 
