@@ -31,9 +31,9 @@ The ACF file:
     
     [SIOPv2]
     image = "https://mee.foundation/continue-with-mee-smartwallet.png"
-    SIOPAuthorize = "https://mee.foundation/authorize"
+    metadata = "https://mee.foundation/.well-known/openid-configuration"
 
-The site reads the "Agent" header field, dereferences the config URL and reads the ACF. It reads the "image" field to find the button image to display. It reads the SIOPAuthorize field to get the invocation URL. It presents a "Continue-with-Mee-Smartwallet" button linked to https://mee.foundation/authorize. The person presses this button, and is logged via their Mee Smartwallet.
+The site reads the "Agent" header field, dereferences the config URL and reads the ACF. It reads the "image" field to find the button image to display. It reads the metadata field and processes it per section 8.2 of [Dynamic Self-Issued OpenID Provider Discovery Metadata](https://openid.net/specs/openid-connect-self-issued-v2-1_0-ID1.html#name-dynamic-self-issued-openid-). It presents a "Continue-with-Mee-Smartwallet" button linked to the discovered activation URL. The person presses this button, and is logged via their wallet.
 
 ## Age Protect
 
