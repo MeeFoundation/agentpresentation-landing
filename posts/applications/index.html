@@ -35,10 +35,10 @@
     <script src="/toggle-theme.js"></script>
   <link href="/assets/about.css" rel="stylesheet">
 <link href="/assets/about-1.css" rel="stylesheet">
-<link href="/assets/posts-_slug_-1.css" rel="stylesheet">
+<link href="/assets/posts-_slug_.css" rel="stylesheet">
 <link href="/assets/posts-_slug_-3.css" rel="stylesheet">
 <link href="/assets/posts-_slug_-2.css" rel="stylesheet">
-<link href="/assets/posts-_slug_.css" rel="stylesheet"><script type="module">const e=document.querySelector(".hamburger-menu"),n=document.querySelector(".menu-icon"),u=document.querySelector("#menu-items");e?.addEventListener("click",()=>{let t="true"===e.getAttribute("aria-expanded");n?.classList.toggle("is-active"),e.setAttribute("aria-expanded",t?"false":"true"),e.setAttribute("aria-label",t?"Open Menu":"Close Menu"),u?.classList.toggle("display-none")});</script></head>
+<link href="/assets/posts-_slug_-1.css" rel="stylesheet"><script type="module">const e=document.querySelector(".hamburger-menu"),n=document.querySelector(".menu-icon"),u=document.querySelector("#menu-items");e?.addEventListener("click",()=>{let t="true"===e.getAttribute("aria-expanded");n?.classList.toggle("is-active"),e.setAttribute("aria-expanded",t?"false":"true"),e.setAttribute("aria-label",t?"Open Menu":"Close Menu"),u?.classList.toggle("display-none")});</script></head>
   <body>
     
   <header class="astro-3EF6KSR2">
@@ -126,8 +126,8 @@
 <span class="line"><span style="color:#abb2bf"></span></span>
 <span class="line"><span style="color:#abb2bf">[SIOPv2]</span></span>
 <span class="line"><span style="color:#abb2bf">image = "https://mee.foundation/continue-with-mee-smartwallet.png"</span></span>
-<span class="line"><span style="color:#abb2bf">SIOPAuthorize = "https://mee.foundation/authorize"</span></span></code></pre>
-<p>The site reads the “Agent” header field, dereferences the config URL and reads the ACF. It reads the “image” field to find the button image to display. It reads the SIOPAuthorize field to get the invocation URL. It presents a “Continue-with-Mee-Smartwallet” button linked to <a href="https://mee.foundation/authorize">https://mee.foundation/authorize</a>. The person presses this button, and is logged via their Mee Smartwallet.</p>
+<span class="line"><span style="color:#abb2bf">metadata = "https://mee.foundation/.well-known/openid-configuration"</span></span></code></pre>
+<p>The site reads the “Agent” header field, dereferences the config URL and reads the ACF. It reads the “image” field to find the button image to display. It reads the metadata field and processes it per section 8.2 of <a href="https://openid.net/specs/openid-connect-self-issued-v2-1_0-ID1.html#name-dynamic-self-issued-openid-">Dynamic Self-Issued OpenID Provider Discovery Metadata</a>. It presents a “Continue-with-Mee-Smartwallet” button linked to the discovered activation URL. The person presses this button, and is logged via their wallet.</p>
 <h2 id="age-protect">Age Protect</h2>
 <p>Assume a person is a minor that wants to send the “Age Protect” signal to websites they visit. The minor has previously installed a browser extention that causes the browser to include the following HTTP header field:</p>
 <pre class="astro-code one-dark-pro" is:raw="" style="white-space:pre-wrap;word-wrap:break-word;background-color:#282c34;overflow-x:auto" tabindex="0"><code><span class="line"><span style="color:#abb2bf">"Agent: AgeProtect"</span></span></code></pre>
