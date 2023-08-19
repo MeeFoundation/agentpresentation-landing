@@ -8,9 +8,9 @@ pubDatetime: 2023-08-01T00:00:00Z
 
 ## HTTP request header
 
-The HTTP request header could be considered a partial solution to the same problem Agent Presentation addresses. The "agent" in this case is the browser (aka user agent). Rather than redirect to config file (as in Agent Presentation), all information is included inline. 
+The HTTP request header could be considered a partial solution to the same problem Provider Discovery addresses. The "provider" in this case is the browser (user agent) itself. Rather than redirect to config file (as in Provider Discovery), information is included inline. 
 
-Specifically websites need to discover information about the person's browser and operating system capabilities. To address this need, websites read field values from the HTTP request header inserted by the browser. The header typically includes, among others, a "User-Agent" field that indicates the person's browser version, the operating system the person is using, etc. The site uses these HTTP fields to understand the capabilities of the browser, default language, cookies, etc. An example is shown below.
+Websites need to discover information about the person's browser and operating system capabilities. To address this need, websites read field values from the HTTP request header inserted by the browser. The header typically includes, among others, a "User-Agent" field that indicates the person's browser version, the operating system the person is using, etc. The site uses these HTTP fields to understand the capabilities of the browser, default language, cookies, etc. An example is shown below.
 
 ![http-header](../../assets/http-header.png)
 

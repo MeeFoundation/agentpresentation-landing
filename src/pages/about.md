@@ -5,40 +5,46 @@ title: "Agent Presentation"
 
 # Specification
 
-Agent Presentation is a specification that defines how a person’s browser/OS presents information about that person’s agents to a website or app. It does so by conveying to the app/site one or more triples of the form {"Agent", *protocol*, *config*} where:
+Provider Discovery is a specification that defines how an app/site can discover information about one or more authentication, digital wallet, age verification, or other kinds providers a person chooses to disclose to this app/site via the browser/OS they are using to interact with it.
 
-- *protocol*: a string defining the protocol implemented by the agent. Values are one of {"SIOPv2", "AgeProtectv1"}
-- *config*: a URL that resolves to an Agent Configuration File
+It does so by conveying to the app/site one or more triples of the form {"Provider", *protocol*, *config*} where:
 
-Note: the person's browser/OS could be configured to present a different set of tuples to different apps.
+- *protocol*: a string stating the protocol implemented by the provider. Values must be one of the following:
+  - "SIOPv2" - the person has a self-issued OpenID provider 
+  - "AgeProtectv1" - the person has an age verification service provider 
+  - TBD...
+
+- *config*: a URL that resolves to an Capability Discovery File
+
+Note: the person's browser/OS may be configured to present a different set of tuples to different apps/sites. 
 
 #### Web implementation
 
-The "Agent" field is added by the browser to every HTTP request header:
+The "Provider" field is added by the browser to every HTTP request header:
 
-	"Agent: <protocol>,<config>"
+	"Provider: <protocol>,<config>"
 
 **Example**
 
-	"Agent: OpenIDConnect, https://google.com/acf.toml"`
+	"Provider: OpenIDConnect, https://google.com/cdf.toml"`
 
 #### Mobile implementation
 
-[To be determined. The mobile OS (iOS, Android, etc.) needs to pass the "Agent" tuples to the app on startup. Perhaps on Android the  [Content Provider] (https://developer.android.com/reference/android/content/ContentProvider) API could be used.]
+[To be determined. The mobile OS (iOS, Android, etc.) needs to pass the "Provider" tuples to the app on startup. Perhaps on Android the [Content Provider] (https://developer.android.com/reference/android/content/ContentProvider) API could be used.]
 
-## Agent Configuration File (ACF)
+## Provider Configuration File (PCF)
 
-An ACF is a TOML format file that has the following required fields:
+An PCF is a configuration file that contains metadata about one or more of the person's providers. The file is in TOML format and  has the following required fields:
 
-- *title* - a string of value "Agent Configuration File"
-- *version* - a string indicating the version of the ACF file format
+- *title* - a string of value "Provider Configuration File"
+- *version* - a string indicating the version of the PCF file format
 
-The rest of the fields in the file are determined by the protocol. Each protocol has its own section of the ACF (e.g. "[SIOPv2]"),  followed by a set of zero or more fields and values.
+The rest of the fields in the file are determined by the protocol used by the service. Each protocol has its own section of the PCF (e.g. "[SIOPv2]"),  followed by a set of zero or more fields and values.
 
-**ACF Example** 
+**PCF Example** 
 
-`title = "Agent Configuration File"`
-`version = "1.0"  #version of Agent Presentaion used by this file (e.g. 1.0)`
+`title = "Provider Configuration File"`
+`version = "1.0"  #version of Provider Discovery used by this file (e.g. 1.0)`
 
 `[SIOPv2]`
 `image = "https://mee.foundation/continue-with-mee-smartwallet.png"`
