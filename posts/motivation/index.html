@@ -8,13 +8,13 @@
     <!-- General Meta Tags -->
     <title>Motivation</title>
     <meta content="Motivation" name="title">
-    <meta content="Two questions arise for apps/sites when individuals are free to choose their own agent intermediaries. Agent Presentation tries to answer them." name="description">
+    <meta content="Two questions arise for apps/sites when individuals are free to choose their own authentication, age verification, and other kinds of providers. Provider Discovery tries to answer them." name="description">
     <meta content="Paul Trevithick" name="author">
     <link href="/sitemap-index.xml" rel="sitemap">
 
     <!-- Open Graph / Facebook -->
     <meta content="Motivation" property="og:title">
-    <meta content="Two questions arise for apps/sites when individuals are free to choose their own agent intermediaries. Agent Presentation tries to answer them." property="og:description">
+    <meta content="Two questions arise for apps/sites when individuals are free to choose their own authentication, age verification, and other kinds of providers. Provider Discovery tries to answer them." property="og:description">
     <meta content="https://agentpresentation.org/posts/motivation/" property="og:url">
     <meta content="https://agentpresentation.org/Motivation.png" property="og:image">
 
@@ -22,7 +22,7 @@
     <meta content="summary_large_image" property="twitter:card">
     <meta content="https://agentpresentation.org/posts/motivation/" property="twitter:url">
     <meta content="Motivation" property="twitter:title">
-    <meta content="Two questions arise for apps/sites when individuals are free to choose their own agent intermediaries. Agent Presentation tries to answer them." property="twitter:description">
+    <meta content="Two questions arise for apps/sites when individuals are free to choose their own authentication, age verification, and other kinds of providers. Provider Discovery tries to answer them." property="twitter:description">
     <meta content="https://agentpresentation.org/Motivation.png" property="twitter:image">
 
     <!-- Google Font -->
@@ -110,31 +110,32 @@
     <h1 class="astro-VJ4TPSPI post-title">Motivation</h1>
     <div class="astro-VJ4TPSPI flex items-center my-2 opacity-80 space-x-2"><svg class="inline-block fill-skin-base h-6 scale-100 w-6" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M7 11h2v2H7zm0 4h2v2H7zm4-4h2v2h-2zm0 4h2v2h-2zm4-4h2v2h-2zm0 4h2v2h-2z"></path><path d="M5 22h14c1.103 0 2-.897 2-2V6c0-1.103-.897-2-2-2h-2V2h-2v2H9V2H7v2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2zM19 8l.001 12H5V8h14z"></path></svg><span class="sr-only">Posted on:</span><span class="italic text-base">August 3, 2023<span aria-hidden="true"> | </span><span class="sr-only">&nbsp;at&nbsp;</span>12:00 AM</span></div>
     <article class="astro-VJ4TPSPI max-w-3xl mx-auto mt-8 prose" id="article" role="article">
-      <p>Let’s define the term “agent” as trusted digital intermediary between a individual and an app/site (“app”). Examples of agents include:</p>
+      <p>We define the term “provider” in this context as a trusted intermediary service used by a person as they interact with an app/site (“app”). Examples of providers include:</p>
 <ul>
-<li>Digital wallets that allow a person to log in and prove information about themselves</li>
-<li>Traditional OpenID Connect services (e.g. “Continue with Google”) that allows a person to log in to the app by leveraging their existing Google account</li>
+<li>Authentication providers (e.g. OpenID Connect) that allows a person to log in to the app by leveraging their existing Google account</li>
+<li>Age verification providers</li>
+<li>Digital wallets that act as self-issued identity providers and allow the holder to log in and prove information about themselves</li>
 </ul>
-<p>Individuals are free to adopt whatever agents they like from among many alternatives. This creates a problem for the app developer: <strong>how does the app know which agent the person would like to use?</strong> The app developer is faced with two choices:</p>
+<p>Individuals are free to adopt whatever providers they wish from among many alternatives. However, this creates a problem for the app developer: <strong>how does the app know which provider the person would like to use?</strong> The app developer is faced with two choices:</p>
 <ul>
-<li><strong>Bad</strong>: Ask the person to pick their agent from a list of alternative agent types that the person might use.</li>
-<li><strong>Ugly</strong>: Ask the person to enter an identifier of their agent. This has in practice proven to be unworkable.</li>
+<li><strong>Bad</strong>: Ask the person to pick their provider from a list of alternatives that the person might use.</li>
+<li><strong>Ugly</strong>: Ask the person to enter an identifier of their provider. Experience has shown this to be unworkable.</li>
 </ul>
-<p>A related question is: <strong>how does the app discover the agent’s capabilities?</strong>.</p>
-<p>Once the app can discover the agent’s capabilites it the app can do things like:</p>
+<p>If an app could discover the provider’s capabilites, it could do things like:</p>
 <ul>
-<li>Ask the agent to perform services on behalf of the person</li>
-<li>Discover the image to display in a button representing the agent</li>
-<li>Adapt its content based on information learned about the person from the agent</li>
+<li>Ask the provider to perform services on behalf of the person</li>
+<li>Discover the image to display in a button representing the provider</li>
+<li>Adapt its content based on information learned about the person from the provider</li>
 </ul>
-<p>These questions have not been solved in a general way, although partial solutions exist.</p>
-<h3 id="authentication-services-and-nascar">Authentication services and NASCAR</h3>
-<p>An app instead of, or in addition to, authenticating the person using a username and password may choose to rely on external authentication services  (e.g. Continue-with-Google, -Facebook, etc.). The app displays a button for each service. However, if there are too many options the resulting site starts to look like a car at NASCAR. This is ugly, confusing, and inconvenient.</p>
+<p>But this begs the question, <strong>how does the app discover the provider’s capabilities?</strong>.</p>
+<p>These two questions have not been solved in a general way, although partial solutions exist.</p>
+<h3 id="authentication-providers-and-nascar">Authentication providers and NASCAR</h3>
+<p>An app instead of, or in addition to, authenticating the person using a username and password may choose to rely on external authentication provider. The app displays a button for each provider. However, if there are too many options the resulting site starts to look like a car at NASCAR which is ugly, confusing, and inconvenient.</p>
 <p><img alt="nascar" decoding="async" fetchpriority="high" height="401" src="/assets/nascar_Z2bGHyo.webp.jpg" width="602"></p>
-<p>For example, there are dozens of OpenID Connect IdPs each with its own logo-ed button such as Continue-with-Google, Continue-with-Twitter, -Apple, -Facebook, -LinkedIn, and so on.</p>
+<p>For example, there are dozens of OpenID Connect authentication providers each with its own logo-ed button such as Continue-with-Google, Continue-with-Twitter, -Apple, -Facebook, -LinkedIn, and so on.</p>
 <p><img alt="social-login-examples" decoding="async" fetchpriority="high" height="692" src="/assets/social-login-examples_ZLqeMu.webp.jpg" width="600"></p>
-<p>The problem is exacerbated by new protocols like OpenID SIOP that allow each person to have a <em>personal IdP</em> (aka a wallet) from one of hundreds of wallet providers.</p>
-<p>The app doesn’t know what authentication alternative the person would like to use before the person is looking at the initial app/site screen. The NASCAR problem would be solved if the app could (i) discover a priori the set of authentication methods the person has available and (ii) find one or more matches with the set of authentication methods the app/site supports and then (iii) display the matches. The result would be a small, although hopefully not the null, set of alternatives. The app would then display a button for each.</p>
+<p>The problem is exacerbated by protocols like OpenID SIOP that allow each person to have a <em>personal identity provider</em> (aka a wallet) from one of hundreds of alternative wallet providers.</p>
+<p>The app doesn’t know which authentication provider the person would like to use before the person is looking at the initial app/site screen. The NASCAR problem would be solved if the app could (i) discover a priori the set of authentication providers the person has available and (ii) find one or more matches with the set of authentication providers the app/site supports and then (iii) display only the matches. The result would be a small, although hopefully not the null, set of alternatives and the app would display a button for each.</p>
     </article>
 
     <ul class="astro-VJ4TPSPI tags-container">

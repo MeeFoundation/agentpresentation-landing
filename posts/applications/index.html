@@ -8,13 +8,13 @@
     <!-- General Meta Tags -->
     <title>Applications</title>
     <meta content="Applications" name="title">
-    <meta content="We describe a few use cases where Agent Presentation could be used" name="description">
+    <meta content="We describe a few use cases where Provider Discovery could be used" name="description">
     <meta content="Paul Trevithick" name="author">
     <link href="/sitemap-index.xml" rel="sitemap">
 
     <!-- Open Graph / Facebook -->
     <meta content="Applications" property="og:title">
-    <meta content="We describe a few use cases where Agent Presentation could be used" property="og:description">
+    <meta content="We describe a few use cases where Provider Discovery could be used" property="og:description">
     <meta content="https://agentpresentation.org/posts/applications/" property="og:url">
     <meta content="https://agentpresentation.org/Applications.png" property="og:image">
 
@@ -22,7 +22,7 @@
     <meta content="summary_large_image" property="twitter:card">
     <meta content="https://agentpresentation.org/posts/applications/" property="twitter:url">
     <meta content="Applications" property="twitter:title">
-    <meta content="We describe a few use cases where Agent Presentation could be used" property="twitter:description">
+    <meta content="We describe a few use cases where Provider Discovery could be used" property="twitter:description">
     <meta content="https://agentpresentation.org/Applications.png" property="twitter:image">
 
     <!-- Google Font -->
@@ -111,36 +111,36 @@
     <div class="astro-VJ4TPSPI flex items-center my-2 opacity-80 space-x-2"><svg class="inline-block fill-skin-base h-6 scale-100 w-6" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M7 11h2v2H7zm0 4h2v2H7zm4-4h2v2h-2zm0 4h2v2h-2zm4-4h2v2h-2zm0 4h2v2h-2z"></path><path d="M5 22h14c1.103 0 2-.897 2-2V6c0-1.103-.897-2-2-2h-2V2h-2v2H9V2H7v2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2zM19 8l.001 12H5V8h14z"></path></svg><span class="sr-only">Posted on:</span><span class="italic text-base">August 2, 2023<span aria-hidden="true"> | </span><span class="sr-only">&nbsp;at&nbsp;</span>12:00 AM</span></div>
     <article class="astro-VJ4TPSPI max-w-3xl mx-auto mt-8 prose" id="article" role="article">
       <h2 id="authentication">Authentication</h2>
-<p>Assume a person has a Google and an Twitter account. Now assume they visit a website that supports four OpenID Connect authentication “agents”, namely, Google, Apple, Facebook and LinkedIn. The person (using some kind tool (e.g. a browser extension, etc.)) could configure their browser to include these two HTTP header fields to “present” the fact that these are the two authentication “agent”/methods that they’d like to use:</p>
-<pre class="astro-code one-dark-pro" is:raw="" style="white-space:pre-wrap;word-wrap:break-word;background-color:#282c34;overflow-x:auto" tabindex="0"><code><span class="line"><span style="color:#abb2bf">"Agent: OpenIDConnect, https://google.com/acf.toml"</span></span>
-<span class="line"><span style="color:#abb2bf">"Agent: OpenIDConnect, https://twitter.com/acf.toml"</span></span></code></pre>
-<p>An Agent Presentation-compatible website would reads these fields, realize that it supports one of the two options (Google) and display one “Continue with Google” button. It would read the image data for this button from <a href="https://google.com/acf.toml">https://google.com/acf.toml</a> in the OpenIDConnect section. In this way the website’s log in page isn’t cluttered with three extra buttons/options (Apple, Facebook, LinkedIn) that the person can’t use. Instead it displays the one button (Google) that the user can use.</p>
+<p>Assume a person has a Google and an Twitter account. Further, assume they visit a website that supports four OpenID Connect authentication providers, namely, Google, Apple, Facebook and LinkedIn. The person (using some kind tool (e.g. a browser extension, etc.)) could configure their browser to include these two HTTP header fields to disclose the two authentication providers that they’d like to use:</p>
+<pre class="astro-code one-dark-pro" is:raw="" style="white-space:pre-wrap;word-wrap:break-word;background-color:#282c34;overflow-x:auto" tabindex="0"><code><span class="line"><span style="color:#abb2bf">"Provider: OpenIDConnect, https://google.com/pcf.toml"</span></span>
+<span class="line"><span style="color:#abb2bf">"Provider: OpenIDConnect, https://twitter.com/pcf.toml"</span></span></code></pre>
+<p>A Provider-Discovery-compatible website would read these fields, realize that it supports one of the two options (Google) and display a “Continue with Google” button. It would read the image data for this button from <a href="https://google.com/acf.toml">https://google.com/acf.toml</a> in the OpenIDConnect section. In this way the website’s log in page isn’t cluttered with three extra buttons/options (Apple, Facebook, LinkedIn) that the person can’t use. Instead, it displays the one button (Google) that the user can and prefers to use.</p>
 <h2 id="digital-wallet">Digital wallet</h2>
 <p>Assume a person has a Mee smartwallet installed on their mobile phone. Now assume they visite a website that supports OpenID SIOPv2. The person configures their browser to include the following HTTP header field:</p>
-<pre class="astro-code one-dark-pro" is:raw="" style="white-space:pre-wrap;word-wrap:break-word;background-color:#282c34;overflow-x:auto" tabindex="0"><code><span class="line"><span style="color:#abb2bf">"Agent: SIOPv2, https://mee.foundation/acf.toml"</span></span></code></pre>
-<p>The ACF file:</p>
-<pre class="astro-code one-dark-pro" is:raw="" style="white-space:pre-wrap;word-wrap:break-word;background-color:#282c34;overflow-x:auto" tabindex="0"><code><span class="line"><span style="color:#abb2bf"># Sample Agent Configuration File</span></span>
+<pre class="astro-code one-dark-pro" is:raw="" style="white-space:pre-wrap;word-wrap:break-word;background-color:#282c34;overflow-x:auto" tabindex="0"><code><span class="line"><span style="color:#abb2bf">"Provider: SIOPv2, https://mee.foundation/pcf.toml"</span></span></code></pre>
+<p>The referenced PCF file (cdf.toml) would look something like this:</p>
+<pre class="astro-code one-dark-pro" is:raw="" style="white-space:pre-wrap;word-wrap:break-word;background-color:#282c34;overflow-x:auto" tabindex="0"><code><span class="line"><span style="color:#abb2bf"># Sample Provider Configuration File</span></span>
 <span class="line"><span style="color:#abb2bf"></span></span>
-<span class="line"><span style="color:#abb2bf">title = "Agent Configuration File"</span></span>
-<span class="line"><span style="color:#abb2bf">version = "1.0"  #version of Agent Presentaion used by this file (e.g. 1.0)</span></span>
+<span class="line"><span style="color:#abb2bf">title = "Provider Discoery File"</span></span>
+<span class="line"><span style="color:#abb2bf">version = "1.0"  #version of Provider Discovery used by this file (e.g. 1.0)</span></span>
 <span class="line"><span style="color:#abb2bf"></span></span>
 <span class="line"><span style="color:#abb2bf">[SIOPv2]</span></span>
 <span class="line"><span style="color:#abb2bf">image = "https://mee.foundation/continue-with-mee-smartwallet.png"</span></span>
 <span class="line"><span style="color:#abb2bf">metadata = "https://mee.foundation/.well-known/openid-configuration"</span></span></code></pre>
-<p>The site reads the “Agent” header field, dereferences the config URL and reads the ACF. It reads the “image” field to find the button image to display. It reads the metadata field and processes it per section 8.2 of <a href="https://openid.net/specs/openid-connect-self-issued-v2-1_0-ID1.html#name-dynamic-self-issued-openid-">Dynamic Self-Issued OpenID Provider Discovery Metadata</a>. It presents a “Continue-with-Mee-Smartwallet” button linked to the discovered activation URL. The person presses this button, and is logged via their wallet.</p>
+<p>The site reads the “Provider” header field, dereferences the config URL and reads the PCF file. It reads the <code>image</code> field to find the button image to display. It reads the <code>metadata</code> field and processes it per section 8.2 of <a href="https://openid.net/specs/openid-connect-self-issued-v2-1_0-ID1.html#name-dynamic-self-issued-openid-">Dynamic Self-Issued OpenID Provider Discovery Metadata</a>. It presents a “Continue-with-Mee-Smartwallet” button linked to the discovered activation URL. The person presses this button, and is logged via their wallet.</p>
 <h2 id="age-protect">Age Protect</h2>
 <p>Assume a person is a minor that wants to send the “Age Protect” signal to websites they visit. The minor has previously installed a browser extention that causes the browser to include the following HTTP header field:</p>
-<pre class="astro-code one-dark-pro" is:raw="" style="white-space:pre-wrap;word-wrap:break-word;background-color:#282c34;overflow-x:auto" tabindex="0"><code><span class="line"><span style="color:#abb2bf">"Agent: AgeProtect"</span></span></code></pre>
-<p>The site reads this Agent field and the “AgeProtect” protocol value. This tells the site to verify the age of the minor by requesting that the minor present an Age Protect-compatible Age Verification Record (AVR) Verifiable Credential from a digital wallet.</p>
+<pre class="astro-code one-dark-pro" is:raw="" style="white-space:pre-wrap;word-wrap:break-word;background-color:#282c34;overflow-x:auto" tabindex="0"><code><span class="line"><span style="color:#abb2bf">"Provider: AgeProtectv1"</span></span></code></pre>
+<p>The site reads this <code>Provider</code> field and the <code>"AgeProtectv1"</code> protocol value. This tells the site to verify the age of the minor by requesting that the minor present an Age Protectv1-compatible Age Verification Record (AVR) Verifiable Credential from a digital wallet.</p>
 <p>Taking this example a bit further, if the minor already has a relationship with a specific age verification provider, e.g. PRIVO, they could configure their browser extension to send an enriched HTTP header field:</p>
-<pre class="astro-code one-dark-pro" is:raw="" style="white-space:pre-wrap;word-wrap:break-word;background-color:#282c34;overflow-x:auto" tabindex="0"><code><span class="line"><span style="color:#abb2bf">"Agent: AgeProtect, https://privo.com/age-protect/age-protect.acf"</span></span></code></pre>
-<p>The age-protect.acf file would contain:</p>
-<pre class="astro-code one-dark-pro" is:raw="" style="white-space:pre-wrap;word-wrap:break-word;background-color:#282c34;overflow-x:auto" tabindex="0"><code><span class="line"><span style="color:#abb2bf"># Sample Agent Configuration File</span></span>
+<pre class="astro-code one-dark-pro" is:raw="" style="white-space:pre-wrap;word-wrap:break-word;background-color:#282c34;overflow-x:auto" tabindex="0"><code><span class="line"><span style="color:#abb2bf">"Provider: AgeProtect, https://privo.com/age-protect/age-protect.pcf"</span></span></code></pre>
+<p>The age-protect.pcf file would contain:</p>
+<pre class="astro-code one-dark-pro" is:raw="" style="white-space:pre-wrap;word-wrap:break-word;background-color:#282c34;overflow-x:auto" tabindex="0"><code><span class="line"><span style="color:#abb2bf"># Sample Provider Configuration File</span></span>
 <span class="line"><span style="color:#abb2bf"></span></span>
-<span class="line"><span style="color:#abb2bf">title = "Agent Configuration File"</span></span>
-<span class="line"><span style="color:#abb2bf">version = "1.0"  #version of Agent Presentaion used by this file (e.g. 1.0)</span></span>
+<span class="line"><span style="color:#abb2bf">title = "Provider Configuration File"</span></span>
+<span class="line"><span style="color:#abb2bf">version = "1.0"  #version of Provider Discovery used by this file (e.g. 1.0)</span></span>
 <span class="line"><span style="color:#abb2bf"></span></span>
-<span class="line"><span style="color:#abb2bf">[AgeProtect]</span></span>
+<span class="line"><span style="color:#abb2bf">[AgeProtectv1]</span></span>
 <span class="line"><span style="color:#abb2bf">image = "https://privo.com/verify-with-PRIVO.png"</span></span>
 <span class="line"><span style="color:#abb2bf">AVRissuanceURL = "https://privo.com/age-protect/issue-avr.html"</span></span></code></pre>
 <p>This allows the website to display a Privo-branded “Verify Age with PRIVO” button, which when tapped resolves to the AVRissuanceURL.</p>

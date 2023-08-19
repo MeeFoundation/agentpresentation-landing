@@ -114,29 +114,39 @@
     <section class="max-w-3xl mb-28 prose prose-img:border-0" id="about">
       <h1 class="sm:text-3xl text-2xl tracking-wider">Agent Presentation</h1>
       <h1 id="specification">Specification</h1>
-<p>Agent Presentation is a specification that defines how a person’s browser/OS presents information about that person’s agents to a website or app. It does so by conveying to the app/site one or more triples of the form {“Agent”, <em>protocol</em>, <em>config</em>} where:</p>
+<p>Provider Discovery is a specification that defines how an app/site can discover information about one or more authentication, digital wallet, age verification, or other kinds providers a person chooses to disclose to this app/site via the browser/OS they are using to interact with it.</p>
+<p>It does so by conveying to the app/site one or more triples of the form {“Provider”, <em>protocol</em>, <em>config</em>} where:</p>
 <ul>
-<li><em>protocol</em>: a string defining the protocol implemented by the agent. Values are one of {“SIOPv2”, “AgeProtectv1”}</li>
-<li><em>config</em>: a URL that resolves to an Agent Configuration File</li>
+<li>
+<p><em>protocol</em>: a string stating the protocol implemented by the provider. Values must be one of the following:</p>
+<ul>
+<li>“SIOPv2” - the person has a self-issued OpenID provider</li>
+<li>“AgeProtectv1” - the person has an age verification service provider</li>
+<li>TBD…</li>
 </ul>
-<p>Note: the person’s browser/OS could be configured to present a different set of tuples to different apps.</p>
+</li>
+<li>
+<p><em>config</em>: a URL that resolves to an Capability Discovery File</p>
+</li>
+</ul>
+<p>Note: the person’s browser/OS may be configured to present a different set of tuples to different apps/sites.</p>
 <h4 id="web-implementation">Web implementation</h4>
-<p>The “Agent” field is added by the browser to every HTTP request header:</p>
-<pre class="astro-code one-dark-pro" is:raw="" style="white-space:pre-wrap;word-wrap:break-word;background-color:#282c34;overflow-x:auto" tabindex="0"><code><span class="line"><span style="color:#abb2bf">"Agent: &lt;protocol&gt;,&lt;config&gt;"</span></span></code></pre>
+<p>The “Provider” field is added by the browser to every HTTP request header:</p>
+<pre class="astro-code one-dark-pro" is:raw="" style="white-space:pre-wrap;word-wrap:break-word;background-color:#282c34;overflow-x:auto" tabindex="0"><code><span class="line"><span style="color:#abb2bf">"Provider: &lt;protocol&gt;,&lt;config&gt;"</span></span></code></pre>
 <p><strong>Example</strong></p>
-<pre class="astro-code one-dark-pro" is:raw="" style="white-space:pre-wrap;word-wrap:break-word;background-color:#282c34;overflow-x:auto" tabindex="0"><code><span class="line"><span style="color:#abb2bf">"Agent: OpenIDConnect, https://google.com/acf.toml"`</span></span></code></pre>
+<pre class="astro-code one-dark-pro" is:raw="" style="white-space:pre-wrap;word-wrap:break-word;background-color:#282c34;overflow-x:auto" tabindex="0"><code><span class="line"><span style="color:#abb2bf">"Provider: OpenIDConnect, https://google.com/cdf.toml"`</span></span></code></pre>
 <h4 id="mobile-implementation">Mobile implementation</h4>
-<p>[To be determined. The mobile OS (iOS, Android, etc.) needs to pass the “Agent” tuples to the app on startup. Perhaps on Android the  [Content Provider] (<a href="https://developer.android.com/reference/android/content/ContentProvider">https://developer.android.com/reference/android/content/ContentProvider</a>) API could be used.]</p>
-<h2 id="agent-configuration-file-acf">Agent Configuration File (ACF)</h2>
-<p>An ACF is a TOML format file that has the following required fields:</p>
+<p>[To be determined. The mobile OS (iOS, Android, etc.) needs to pass the “Provider” tuples to the app on startup. Perhaps on Android the [Content Provider] (<a href="https://developer.android.com/reference/android/content/ContentProvider">https://developer.android.com/reference/android/content/ContentProvider</a>) API could be used.]</p>
+<h2 id="provider-configuration-file-pcf">Provider Configuration File (PCF)</h2>
+<p>An PCF is a configuration file that contains metadata about one or more of the person’s providers. The file is in TOML format and  has the following required fields:</p>
 <ul>
-<li><em>title</em> - a string of value “Agent Configuration File”</li>
-<li><em>version</em> - a string indicating the version of the ACF file format</li>
+<li><em>title</em> - a string of value “Provider Configuration File”</li>
+<li><em>version</em> - a string indicating the version of the PCF file format</li>
 </ul>
-<p>The rest of the fields in the file are determined by the protocol. Each protocol has its own section of the ACF (e.g. “[SIOPv2]”),  followed by a set of zero or more fields and values.</p>
-<p><strong>ACF Example</strong></p>
-<p><code>title = "Agent Configuration File"</code>
-<code>version = "1.0"  #version of Agent Presentaion used by this file (e.g. 1.0)</code></p>
+<p>The rest of the fields in the file are determined by the protocol used by the service. Each protocol has its own section of the PCF (e.g. “[SIOPv2]”),  followed by a set of zero or more fields and values.</p>
+<p><strong>PCF Example</strong></p>
+<p><code>title = "Provider Configuration File"</code>
+<code>version = "1.0"  #version of Provider Discovery used by this file (e.g. 1.0)</code></p>
 <p><code>[SIOPv2]</code>
 <code>image = "https://mee.foundation/continue-with-mee-smartwallet.png"</code>
 <code>SIOPAuthorize = "https://mee.foundation/authorize"</code></p>
