@@ -1,6 +1,6 @@
 ---
 layout: ../layouts/AboutLayout.astro
-title: "Agent Presentation"
+title: "Provider Discovery"
 ---
 
 # Specification

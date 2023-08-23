@@ -7,7 +7,7 @@ import sitemap from "@astrojs/sitemap";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://agentpresentation.org/", // replace this with your deployed domain
+  site: "https://providerdiscovery.org/", // replace this with your deployed domain
   integrations: [
     tailwind({
       config: {

@@ -1,11 +1,11 @@
 import type { Site, SocialObjects } from "./types";
 
 export const SITE: Site = {
-  website: "https://agentpresentation.org/",
+  website: "https://providerdiscovery.org/",
   author: "Paul Trevithick",
-  desc: "Agent Presentation site",
-  title: "Agent Presentation",
-  ogImage: "agent-presentation.jpg",
+  desc: "Provider Discovery site",
+  title: "Provider Discovery",
+  ogImage: "provider-discovery.jpg",
   lightAndDarkMode: true,
   postPerPage: 3,
 };
@@ -22,7 +22,7 @@ export const LOGO_IMAGE = {
 export const SOCIALS: SocialObjects = [
   {
     name: "Github",
-    href: "https://github.com/MeeFoundation/agentpresentation-landing",
+    href: "https://github.com/MeeFoundation/providerdiscovery-landing",
     linkTitle: ` ${SITE.title} on Github`,
     active: false,
   },

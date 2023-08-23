@@ -1,4 +1,4 @@
-# Agent Presentation
+# Provider Discovery
 
-The contents of this repo are published on [Agent Presentation.org](https://agentpresentation.org)
+The contents of this repo are published on [providerdiscovery.org](https://providerdiscovery.org)
 
