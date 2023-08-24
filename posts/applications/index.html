@@ -35,10 +35,10 @@
     <script src="/toggle-theme.js"></script>
   <link href="/assets/about.css" rel="stylesheet">
 <link href="/assets/about-1.css" rel="stylesheet">
-<link href="/assets/posts-_slug_.css" rel="stylesheet">
-<link href="/assets/posts-_slug_-3.css" rel="stylesheet">
 <link href="/assets/posts-_slug_-2.css" rel="stylesheet">
-<link href="/assets/posts-_slug_-1.css" rel="stylesheet"><script type="module">const e=document.querySelector(".hamburger-menu"),n=document.querySelector(".menu-icon"),u=document.querySelector("#menu-items");e?.addEventListener("click",()=>{let t="true"===e.getAttribute("aria-expanded");n?.classList.toggle("is-active"),e.setAttribute("aria-expanded",t?"false":"true"),e.setAttribute("aria-label",t?"Open Menu":"Close Menu"),u?.classList.toggle("display-none")});</script></head>
+<link href="/assets/posts-_slug_-3.css" rel="stylesheet">
+<link href="/assets/posts-_slug_-1.css" rel="stylesheet">
+<link href="/assets/posts-_slug_.css" rel="stylesheet"><script type="module">const e=document.querySelector(".hamburger-menu"),n=document.querySelector(".menu-icon"),u=document.querySelector("#menu-items");e?.addEventListener("click",()=>{let t="true"===e.getAttribute("aria-expanded");n?.classList.toggle("is-active"),e.setAttribute("aria-expanded",t?"false":"true"),e.setAttribute("aria-label",t?"Open Menu":"Close Menu"),u?.classList.toggle("display-none")});</script></head>
   <body>
     
   <header class="astro-3EF6KSR2">
@@ -110,7 +110,8 @@
     <h1 class="astro-VJ4TPSPI post-title">Applications</h1>
     <div class="astro-VJ4TPSPI flex items-center my-2 opacity-80 space-x-2"><svg class="inline-block fill-skin-base h-6 scale-100 w-6" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M7 11h2v2H7zm0 4h2v2H7zm4-4h2v2h-2zm0 4h2v2h-2zm4-4h2v2h-2zm0 4h2v2h-2z"></path><path d="M5 22h14c1.103 0 2-.897 2-2V6c0-1.103-.897-2-2-2h-2V2h-2v2H9V2H7v2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2zM19 8l.001 12H5V8h14z"></path></svg><span class="sr-only">Posted on:</span><span class="italic text-base">August 2, 2023<span aria-hidden="true"> | </span><span class="sr-only">&nbsp;at&nbsp;</span>12:00 AM</span></div>
     <article class="astro-VJ4TPSPI max-w-3xl mx-auto mt-8 prose" id="article" role="article">
-      <h2 id="authentication">Authentication</h2>
+      <p>This post describes a few applications of provider discovery.</p>
+<h2 id="authentication">Authentication</h2>
 <p>Assume a person has a Google and an Twitter account. Further, assume they visit a website that supports four OpenID Connect authentication providers, namely, Google, Apple, Facebook and LinkedIn. The person (using some kind tool (e.g. a browser extension, etc.)) could configure their browser to include these two HTTP header fields to disclose the two authentication providers that they’d like to use:</p>
 <pre class="astro-code one-dark-pro" is:raw="" style="white-space:pre-wrap;word-wrap:break-word;background-color:#282c34;overflow-x:auto" tabindex="0"><code><span class="line"><span style="color:#abb2bf">"Provider: OpenIDConnect, https://google.com/pcf.toml"</span></span>
 <span class="line"><span style="color:#abb2bf">"Provider: OpenIDConnect, https://twitter.com/pcf.toml"</span></span></code></pre>
