@@ -6,6 +6,7 @@ featured: true
 pubDatetime: 2023-08-02T00:00:00Z
 ---
 
+This post describes a few applications of provider discovery.
 
 ## Authentication 
 
