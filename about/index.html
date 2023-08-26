@@ -115,42 +115,47 @@
       <h1 class="sm:text-3xl text-2xl tracking-wider">Provider Discovery</h1>
       <h1 id="specification">Specification</h1>
 <p>Provider Discovery is a specification that defines how an app/site can discover information about one or more authentication, digital wallet, age verification, or other types of providers a person chooses to disclose to this app/site via the browser/OS they are using to interact with it.</p>
-<p>It also supports a feature that might be called <em>provider announcement</em>. This allows the client to  announce support for one or more types of providers without being requested by the app/site. Since this feature discloses information which could be used for fingerprinting by the server it should be used only in exceptional cases.</p>
+<p>Terminology</p>
+<ul>
+<li>server: the web server or mobile app</li>
+<li>client: a user agent (e.g. browser) in web scenarios or the mobile OS in mobile app scenarios</li>
+</ul>
+<p>It also supports an alternate flow called <em>provider announcement</em>. This allows the client to  proactively announce support for one or more types of providers without being requested by the server. Since this feature discloses information which could be used for fingerprinting by the server it should be used only in exceptional cases.</p>
 <p>The normal <em>provider discovery</em> flow is as follows:</p>
 <ol>
 <li>
-<p>The app/site announces to the client that it supports Provider Discovery including the set of one or more <em>types</em> of providers that it supports</p>
+<p>The server announces to the client that it supports Provider Discovery including the set of one or more types of providers that it supports</p>
 </li>
 <li>
-<p>The browser/OS includes one or more triples of the form {provider-discovery, type, config}</p>
+<p>The client includes one or more triples of the form {<code>provider-discovery</code>, <code>provider-type,</code> <em><code>config</code></em>}</p>
 </li>
 </ol>
 <p>The <em>provider announcement</em> flow is the same as above, except step #1 is eliminated.</p>
 <p>Where:</p>
 <ul>
 <li>
-<p><em>provider-discovery</em>: a label indicating that this is a Provider Discovery triple</p>
+<p><code>provider-discovery</code>: a label indicating that this is a Provider Discovery triple</p>
 </li>
 <li>
-<p><em>type</em>: the type of provider. Values must be one of the following:</p>
+<p><code>provider-type</code>: the type of provider. Values must be one of the following:</p>
 <ul>
-<li>“OpenIDConnect” - the pers has an OpenID provider</li>
+<li>“OpenIDConnect” - the person has an OpenID provider</li>
 <li>“SIOPv2” - the person has a self-issued OpenID provider</li>
 <li>“AgeProtectv1” - the person has an age verification service provider</li>
 <li>TBD…</li>
 </ul>
 </li>
 <li>
-<p><em>config</em>: a URL that resolves to an Capability Discovery File</p>
+<p><code>config</code>: a URL that resolves to an Capability Discovery File</p>
 </li>
 </ul>
-<p>Note: the person’s browser/OS may be configured to present a different triples to different apps/sites.</p>
+<p>Note: the person’s client may be configured to return different triples to different servers.</p>
 <h4 id="web-implementation">Web implementation</h4>
 <h5 id="normal-flow">Normal flow</h5>
 <p>A server must announce that is supports Provider Discovery using the <code>Accept-PD</code> header. For example:</p>
 <pre class="astro-code one-dark-pro" is:raw="" style="white-space:pre-wrap;word-wrap:break-word;background-color:#282c34;overflow-x:auto" tabindex="0"><code><span class="line"><span style="color:#abb2bf">HTTP/1.1 200 OK</span></span>
 <span class="line"><span style="color:#abb2bf">Accept-PD: OpenIDConnect</span></span></code></pre>
-<p>In response, a client user agent (e.g. browser) could append one or more Provider Discovery headers whose type is OpendIDConnect in every HTTP request of the form:</p>
+<p>In response, a client could append one or more Provider Discovery headers whose <code>provider-type</code> is OpendIDConnect in every HTTP request of the form:</p>
 <p>Sec-PD: OpenIDConnect, <config></config></p>
 <p>For example, the client could respond with one header informing the server that the person operating the client has a Google OpenID authentication provider:</p>
 <pre class="astro-code one-dark-pro" is:raw="" style="white-space:pre-wrap;word-wrap:break-word;background-color:#282c34;overflow-x:auto" tabindex="0"><code><span class="line"><span style="color:#abb2bf">GET / HTTP/1.1</span></span>
