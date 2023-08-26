@@ -35,9 +35,9 @@
     <script src="/toggle-theme.js"></script>
   <link href="/assets/about.css" rel="stylesheet">
 <link href="/assets/about-1.css" rel="stylesheet">
-<link href="/assets/posts-_slug_-2.css" rel="stylesheet">
-<link href="/assets/posts-_slug_-3.css" rel="stylesheet">
 <link href="/assets/posts-_slug_-1.css" rel="stylesheet">
+<link href="/assets/posts-_slug_-3.css" rel="stylesheet">
+<link href="/assets/posts-_slug_-2.css" rel="stylesheet">
 <link href="/assets/posts-_slug_.css" rel="stylesheet"><script type="module">const e=document.querySelector(".hamburger-menu"),n=document.querySelector(".menu-icon"),u=document.querySelector("#menu-items");e?.addEventListener("click",()=>{let t="true"===e.getAttribute("aria-expanded");n?.classList.toggle("is-active"),e.setAttribute("aria-expanded",t?"false":"true"),e.setAttribute("aria-label",t?"Open Menu":"Close Menu"),u?.classList.toggle("display-none")});</script></head>
   <body>
     
@@ -112,13 +112,13 @@
     <article class="astro-VJ4TPSPI max-w-3xl mx-auto mt-8 prose" id="article" role="article">
       <p>This post describes a few applications of provider discovery.</p>
 <h2 id="authentication">Authentication</h2>
-<p>Assume a person has a Google and an Twitter account. Further, assume they visit a website that supports four OpenID Connect authentication providers, namely, Google, Apple, Facebook and LinkedIn. The person (using some kind tool (e.g. a browser extension, etc.)) could configure their browser to include these two HTTP header fields to disclose the two authentication providers that they’d like to use:</p>
-<pre class="astro-code one-dark-pro" is:raw="" style="white-space:pre-wrap;word-wrap:break-word;background-color:#282c34;overflow-x:auto" tabindex="0"><code><span class="line"><span style="color:#abb2bf">"Provider: OpenIDConnect, https://google.com/pcf.toml"</span></span>
-<span class="line"><span style="color:#abb2bf">"Provider: OpenIDConnect, https://twitter.com/pcf.toml"</span></span></code></pre>
-<p>A Provider-Discovery-compatible website would read these fields, realize that it supports one of the two options (Google) and display a “Continue with Google” button. It would read the image data for this button from <a href="https://google.com/acf.toml">https://google.com/acf.toml</a> in the OpenIDConnect section. In this way the website’s log in page isn’t cluttered with three extra buttons/options (Apple, Facebook, LinkedIn) that the person can’t use. Instead, it displays the one button (Google) that the user can and prefers to use.</p>
+<p>Assume a person has a Google and an Twitter account. Further, assume they visit a website that supports four OpenID Connect authentication providers, namely, Google, Apple, Facebook and LinkedIn. The person (using some kind tool (e.g. a browser extension, etc.)) could configure their browser to include these two HTTP headers to disclose the two authentication providers that they’d like to use:</p>
+<pre class="astro-code one-dark-pro" is:raw="" style="white-space:pre-wrap;word-wrap:break-word;background-color:#282c34;overflow-x:auto" tabindex="0"><code><span class="line"><span style="color:#abb2bf">Sec-PD: OpenIDConnect, "https://google.com/pcf.toml"</span></span>
+<span class="line"><span style="color:#abb2bf">Sec-PD: OpenIDConnect, "https://twitter.com/pcf.toml"</span></span></code></pre>
+<p>A ProviderDiscovery-compatible website would read these headers, realize that it supports one of the two options (Google) and display a “Continue with Google” button. It would read the image data for this button from <a href="https://google.com/acf.toml">https://google.com/acf.toml</a> in the OpenIDConnect section. In this way the website’s log in page isn’t cluttered with three extra buttons/options (Apple, Facebook, LinkedIn) that the person can’t use. Instead, it displays the one button (Google) that the user can and prefers to use.</p>
 <h2 id="digital-wallet">Digital wallet</h2>
 <p>Assume a person has a Mee smartwallet installed on their mobile phone. Now assume they visite a website that supports OpenID SIOPv2. The person configures their browser to include the following HTTP header field:</p>
-<pre class="astro-code one-dark-pro" is:raw="" style="white-space:pre-wrap;word-wrap:break-word;background-color:#282c34;overflow-x:auto" tabindex="0"><code><span class="line"><span style="color:#abb2bf">"Provider: SIOPv2, https://mee.foundation/pcf.toml"</span></span></code></pre>
+<pre class="astro-code one-dark-pro" is:raw="" style="white-space:pre-wrap;word-wrap:break-word;background-color:#282c34;overflow-x:auto" tabindex="0"><code><span class="line"><span style="color:#abb2bf">Sec-PD: SIOPv2, "https://mee.foundation/pcf.toml"</span></span></code></pre>
 <p>The referenced PCF file (cdf.toml) would look something like this:</p>
 <pre class="astro-code one-dark-pro" is:raw="" style="white-space:pre-wrap;word-wrap:break-word;background-color:#282c34;overflow-x:auto" tabindex="0"><code><span class="line"><span style="color:#abb2bf"># Sample Provider Configuration File</span></span>
 <span class="line"><span style="color:#abb2bf"></span></span>
@@ -130,11 +130,11 @@
 <span class="line"><span style="color:#abb2bf">metadata = "https://mee.foundation/.well-known/openid-configuration"</span></span></code></pre>
 <p>The site reads the “Provider” header field, dereferences the config URL and reads the PCF file. It reads the <code>image</code> field to find the button image to display. It reads the <code>metadata</code> field and processes it per section 8.2 of <a href="https://openid.net/specs/openid-connect-self-issued-v2-1_0-ID1.html#name-dynamic-self-issued-openid-">Dynamic Self-Issued OpenID Provider Discovery Metadata</a>. It presents a “Continue-with-Mee-Smartwallet” button linked to the discovered activation URL. The person presses this button, and is logged via their wallet.</p>
 <h2 id="age-protect">Age Protect</h2>
-<p>Assume a person is a minor that wants to send the “Age Protect” signal to websites they visit. The minor has previously installed a browser extention that causes the browser to include the following HTTP header field:</p>
-<pre class="astro-code one-dark-pro" is:raw="" style="white-space:pre-wrap;word-wrap:break-word;background-color:#282c34;overflow-x:auto" tabindex="0"><code><span class="line"><span style="color:#abb2bf">"Provider: AgeProtectv1"</span></span></code></pre>
-<p>The site reads this <code>Provider</code> field and the <code>"AgeProtectv1"</code> protocol value. This tells the site to verify the age of the minor by requesting that the minor present an Age Protectv1-compatible Age Verification Record (AVR) Verifiable Credential from a digital wallet.</p>
+<p>Assume a person is a minor that wants to send the “Age Protect” signal to websites they visit. The minor has previously installed a browser extention that causes the browser to include the following HTTP header:</p>
+<pre class="astro-code one-dark-pro" is:raw="" style="white-space:pre-wrap;word-wrap:break-word;background-color:#282c34;overflow-x:auto" tabindex="0"><code><span class="line"><span style="color:#abb2bf">Sec-PD: AgeProtectv1</span></span></code></pre>
+<p>The site reads this <code>Provider</code> field and the <code>"AgeProtectv1"</code> type value. This tells the site to verify the age of the minor by requesting that the minor present an Age Protectv1-compatible Age Verification Record (AVR) Verifiable Credential from a digital wallet.</p>
 <p>Taking this example a bit further, if the minor already has a relationship with a specific age verification provider, e.g. PRIVO, they could configure their browser extension to send an enriched HTTP header field:</p>
-<pre class="astro-code one-dark-pro" is:raw="" style="white-space:pre-wrap;word-wrap:break-word;background-color:#282c34;overflow-x:auto" tabindex="0"><code><span class="line"><span style="color:#abb2bf">"Provider: AgeProtect, https://privo.com/age-protect/age-protect.pcf"</span></span></code></pre>
+<pre class="astro-code one-dark-pro" is:raw="" style="white-space:pre-wrap;word-wrap:break-word;background-color:#282c34;overflow-x:auto" tabindex="0"><code><span class="line"><span style="color:#abb2bf">Sec-PD: AgeProtect, "https://privo.com/age-protect/age-protect.pcf"</span></span></code></pre>
 <p>The age-protect.pcf file would contain:</p>
 <pre class="astro-code one-dark-pro" is:raw="" style="white-space:pre-wrap;word-wrap:break-word;background-color:#282c34;overflow-x:auto" tabindex="0"><code><span class="line"><span style="color:#abb2bf"># Sample Provider Configuration File</span></span>
 <span class="line"><span style="color:#abb2bf"></span></span>
