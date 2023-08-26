@@ -7,29 +7,34 @@ title: "Provider Discovery"
 
 Provider Discovery is a specification that defines how an app/site can discover information about one or more authentication, digital wallet, age verification, or other types of providers a person chooses to disclose to this app/site via the browser/OS they are using to interact with it. 
 
-It also supports a feature that might be called *provider announcement*. This allows the client to  announce support for one or more types of providers without being requested by the app/site. Since this feature discloses information which could be used for fingerprinting by the server it should be used only in exceptional cases.
+Terminology
+
+- server: the web server or mobile app
+- client: a user agent (e.g. browser) in web scenarios or the mobile OS in mobile app scenarios
+
+It also supports an alternate flow called *provider announcement*. This allows the client to  proactively announce support for one or more types of providers without being requested by the server. Since this feature discloses information which could be used for fingerprinting by the server it should be used only in exceptional cases.
 
 The normal *provider discovery* flow is as follows:
 
-1. The app/site announces to the client that it supports Provider Discovery including the set of one or more *types* of providers that it supports
+1. The server announces to the client that it supports Provider Discovery including the set of one or more types of providers that it supports
 
-2. The browser/OS includes one or more triples of the form {provider-discovery, type, config}
+2. The client includes one or more triples of the form {`provider-discovery`, `provider-type,` *`config`*}
 
 The *provider announcement* flow is the same as above, except step #1 is eliminated.
 
 Where:
 
-- *provider-discovery*: a label indicating that this is a Provider Discovery triple 
+- `provider-discovery`: a label indicating that this is a Provider Discovery triple 
   
-- *type*: the type of provider. Values must be one of the following:
-  - "OpenIDConnect" - the pers has an OpenID provider
+- `provider-type`: the type of provider. Values must be one of the following:
+  - "OpenIDConnect" - the person has an OpenID provider
   - "SIOPv2" - the person has a self-issued OpenID provider 
   - "AgeProtectv1" - the person has an age verification service provider 
   - TBD...
   
-- *config*: a URL that resolves to an Capability Discovery File
+- `config`: a URL that resolves to an Capability Discovery File
 
-Note: the person's browser/OS may be configured to present a different triples to different apps/sites. 
+Note: the person's client may be configured to return different triples to different servers. 
 
 #### Web implementation
 
@@ -42,7 +47,7 @@ HTTP/1.1 200 OK
 Accept-PD: OpenIDConnect
 ```
 
-In response, a client user agent (e.g. browser) could append one or more Provider Discovery headers whose type is OpendIDConnect in every HTTP request of the form:
+In response, a client could append one or more Provider Discovery headers whose `provider-type` is OpendIDConnect in every HTTP request of the form:
 
 Sec-PD: OpenIDConnect, <config>
 
