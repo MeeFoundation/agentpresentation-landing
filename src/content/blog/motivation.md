@@ -2,7 +2,7 @@
 title: Motivation
 author: Paul Trevithick
 description: Two questions arise for apps/sites when individuals are free to choose their own Authorization, age verification, and other kinds of providers. Provider Discovery tries to answer them.
-featured: true
+featured: false
 pubDatetime: 2023-08-03T00:00:00Z
 ---
 

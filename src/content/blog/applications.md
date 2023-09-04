@@ -2,8 +2,8 @@
 title: Applications
 author: Paul Trevithick
 description: We describe a few use cases where Provider Discovery could be used
-featured: true
-pubDatetime: 2023-08-02T00:00:00Z
+featured: false
+pubDatetime: 2023-09-04T00:00:00Z
 ---
 
 This post describes a few applications of provider discovery.
