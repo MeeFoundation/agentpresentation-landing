@@ -26,7 +26,7 @@ CHAPI - Credential Handler API (see [chapi.io](https://chapi.io)) is a protocol 
 
 CHAPI provides a solution for provider discovery very similar in spirit to Provider Discovery. We consider it a "partial" solution since it has these constraints:
 
-- Only supports one kind of provider, namely VC-compatible digital wallets
+- Only supports one kind of provider, namely, VC-compatible digital wallets
 - Only supports the web (not mobile apps)
 
 
