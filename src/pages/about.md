@@ -35,11 +35,29 @@ The `provider-type` must be one of the following:
 
 **Config-url**
 
-The `config-url` is a URL that resolves to an *Provider Configuration File* (see section below).
+The `config-url` is a URL that resolves to an *Provider Configuration File*.
 
-#### Web implementation
+### Provider Configuration File (PCF)
 
-##### Discovery flow
+An PCF is a configuration file that contains metadata about one or more of the person's providers. The file is in TOML format and  has the following required fields:
+
+- *title* - a string of value "Provider Configuration File"
+- *version* - a string indicating the version of the PCF file format
+
+The rest of the fields in the file are determined by the protocol used by the service. Each protocol has its own section of the PCF (e.g. "[SIOPv2]"),  followed by a set of zero or more fields and values.
+
+**PCF Example** 
+
+`title = "Provider Configuration File"`
+`version = "1.0"  #version of Provider Discovery used by this file (e.g. 1.0)`
+
+`[SIOPv2]`
+`image = "https://mee.foundation/continue-with-mee-smartwallet.png"`
+`SIOPAuthorize = "https://mee.foundation/authorize"`
+
+## Web implementation
+
+### Discovery flow
 
 A server must announce that is supports Provider Discovery using the `Accept-PD` header. For example:
 
@@ -58,7 +76,7 @@ For example, the client could respond with one header informing the server that 
 	Host: example.com
 	Sec-PD: type=OpenIDConnect; cfg="https://google.com/pcf.toml"
 
-##### Announce flow
+### Announce flow
 
 A client user agent can proactively announce that it supports AgeProtectv1 by including a header of the form: Sec-PD: type=AgeProtectv1. For example:
 
@@ -66,25 +84,9 @@ A client user agent can proactively announce that it supports AgeProtectv1 by in
 	Host: example.com
 	Sec-PD: type=AgeProtectv1
 
-#### Mobile implementation
+## Mobile implementation
 
-[To be determined. The mobile OS (iOS, Android, etc.) needs to pass the "Provider" tuples to the app on startup. Perhaps on Android the [Content Provider] (https://developer.android.com/reference/android/content/ContentProvider) API could be used.]
+[To be written. The mobile OS (iOS, Android, etc.) needs to implement the flows on startup. Perhaps on Android the [Content Provider] (https://developer.android.com/reference/android/content/ContentProvider) API could be used. As for iOS...just more questions than answers.]
 
-## Provider Configuration File (PCF)
 
-An PCF is a configuration file that contains metadata about one or more of the person's providers. The file is in TOML format and  has the following required fields:
-
-- *title* - a string of value "Provider Configuration File"
-- *version* - a string indicating the version of the PCF file format
-
-The rest of the fields in the file are determined by the protocol used by the service. Each protocol has its own section of the PCF (e.g. "[SIOPv2]"),  followed by a set of zero or more fields and values.
-
-**PCF Example** 
-
-`title = "Provider Configuration File"`
-`version = "1.0"  #version of Provider Discovery used by this file (e.g. 1.0)`
-
-`[SIOPv2]`
-`image = "https://mee.foundation/continue-with-mee-smartwallet.png"`
-`SIOPAuthorize = "https://mee.foundation/authorize"`
 
