@@ -118,18 +118,18 @@
 <p>There are two kinds of flows, <em>discovery</em> and <em>announcement</em>.</p>
 <p>The <em>provider discovery</em> flow is as follows:</p>
 <ol>
-<li>The server sends to the client a list of one or more <em>provider-types</em> that it supports</li>
-<li>In response, the client sends a list of zero or more provider-types matching the those sent by the server that it (the client) supports.</li>
+<li>The server sends to the client a list of one or more <code>provider-types</code> that it supports</li>
+<li>In response, the client sends a list of zero or more <code>provider-types</code> matching the those sent by the server that it (the client) supports.</li>
 </ol>
 <p>Note: the person’s client response (in #2 above) may return different triples to different servers.</p>
 <p>The <em>provider announcement</em> flow is as follows:</p>
 <ol>
-<li>The client sends a list of zero or more provider-types that it supports.</li>
+<li>The client sends a list of zero or more <code>provider-types</code> that it supports.</li>
 </ol>
 <p>Since the announcement flow discloses information which could be used for fingerprinting by the server, it should be used only in exceptional cases.</p>
-<p>In either flow, for each provider-type in the list sent by by client, a <em>config-URL</em> key-value parameter may be provided along with zero or more other key-value pairs specific to this provider-type.</p>
+<p>In either flow, for each provider-type in the list sent by by client, a <code>config-url</code> key-value parameter may be provided along with zero or more other key-value pairs specific to this provider-type.</p>
 <p><strong>Provider-type</strong></p>
-<p>The provider-type must be one of the following:</p>
+<p>The <code>provider-type</code> must be one of the following:</p>
 <ul>
 <li>“OpenIDConnect” - the person has an OpenID provider</li>
 <li>“SIOPv2” - the person has a self-issued OpenID provider</li>
@@ -137,14 +137,14 @@
 <li>TBD…</li>
 </ul>
 <p><strong>Config-url</strong></p>
-<p>The config-url is a URL that resolves to an <em>Provider Configuration File</em> (see below)</p>
+<p>The <code>config-url</code> is a URL that resolves to an <em>Provider Configuration File</em> (see section below).</p>
 <h4 id="web-implementation">Web implementation</h4>
 <h5 id="discovery-flow">Discovery flow</h5>
 <p>A server must announce that is supports Provider Discovery using the <code>Accept-PD</code> header. For example:</p>
 <pre class="astro-code one-dark-pro" is:raw="" style="white-space:pre-wrap;word-wrap:break-word;background-color:#282c34;overflow-x:auto" tabindex="0"><code><span class="line"><span style="color:#abb2bf">HTTP/1.1 200 OK</span></span>
 <span class="line"><span style="color:#abb2bf">Accept-PD: type=OpenIDConnect</span></span></code></pre>
 <p>In response, a client could append one or more Provider Discovery headers whose <code>provider-type</code> is OpendIDConnect in every HTTP request of the form:</p>
-<p>Sec-PD: type=OpenIDConnect; cfg=<config-url></config-url></p>
+<p>Sec-PD: type=OpenIDConnect; cfg=<config-url>; [<key>=<value>;]*</value></key></config-url></p>
 <p>For example, the client could respond with one header informing the server that the person operating the client has a Google OpenID authentication provider:</p>
 <pre class="astro-code one-dark-pro" is:raw="" style="white-space:pre-wrap;word-wrap:break-word;background-color:#282c34;overflow-x:auto" tabindex="0"><code><span class="line"><span style="color:#abb2bf">GET / HTTP/1.1</span></span>
 <span class="line"><span style="color:#abb2bf">Host: example.com</span></span>
