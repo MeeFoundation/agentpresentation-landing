@@ -5,65 +5,66 @@ title: "Provider Discovery"
 
 # Specification
 
-Provider Discovery is a specification that defines how an app/site can discover information about one or more authentication, digital wallet, age verification, or other types of providers a person chooses to disclose to this app/site via the browser/OS they are using to interact with it. 
+Assume a person employs one or more *providers* (e.g. authentication provider, wallet provider, age verification provider, etc.) as part of their interactions with mobile apps or web servers (*servers*) using a *client* (web browser or mobile OS).  Provider Discovery is a specification that defines how the *server* can learn of the existence of these providers, and in some cases, characteristics of the provider.
 
-Terminology
+There are two kinds of flows, *discovery* and *announcement*. 
 
-- server: the web server or mobile app
-- client: a user agent (e.g. browser) in web scenarios or the mobile OS in mobile app scenarios
+The *provider discovery* flow is as follows:
 
-It also supports an alternate flow called *provider announcement*. This allows the client to  proactively announce support for one or more types of providers without being requested by the server. Since this feature discloses information which could be used for fingerprinting by the server it should be used only in exceptional cases.
+1. The server sends to the client a list of one or more *provider-types* that it supports
+2. In response, the client sends a list of zero or more provider-types matching the those sent by the server that it (the client) supports. 
 
-The normal *provider discovery* flow is as follows:
+Note: the person's client response (in #2 above) may return different triples to different servers. 
 
-1. The server announces to the client that it supports Provider Discovery including the set of one or more types of providers that it supports
+The *provider announcement* flow is as follows:
 
-2. The client includes one or more triples of the form {`provider-discovery`, `provider-type,` *`config`*}
+1. The client sends a list of zero or more provider-types that it supports. 
 
-The *provider announcement* flow is the same as above, except step #1 is eliminated.
+Since the announcement flow discloses information which could be used for fingerprinting by the server, it should be used only in exceptional cases.
 
-Where:
+In either flow, for each provider-type in the list sent by by client, a *config-URL* key-value parameter may be provided along with zero or more other key-value pairs specific to this provider-type.
 
-- `provider-discovery`: a label indicating that this is a Provider Discovery triple 
-  
-- `provider-type`: the type of provider. Values must be one of the following:
-  - "OpenIDConnect" - the person has an OpenID provider
-  - "SIOPv2" - the person has a self-issued OpenID provider 
-  - "AgeProtectv1" - the person has an age verification service provider 
-  - TBD...
-  
-- `config`: a URL that resolves to an Capability Discovery File
+**Provider-type**
 
-Note: the person's client may be configured to return different triples to different servers. 
+The provider-type must be one of the following:
+
+- "OpenIDConnect" - the person has an OpenID provider
+- "SIOPv2" - the person has a self-issued OpenID provider 
+- "AgeProtectv1" - the person has an age verification service provider 
+- TBD...
+
+**Config-url**
+
+The config-url is a URL that resolves to an *Provider Configuration File* (see below)
 
 #### Web implementation
 
-##### Normal flow
+##### Discovery flow
 
 A server must announce that is supports Provider Discovery using the `Accept-PD` header. For example:
 
 ```
 HTTP/1.1 200 OK
-Accept-PD: OpenIDConnect
+Accept-PD: type=OpenIDConnect
 ```
 
 In response, a client could append one or more Provider Discovery headers whose `provider-type` is OpendIDConnect in every HTTP request of the form:
 
-Sec-PD: OpenIDConnect, <config>
+Sec-PD: type=OpenIDConnect; cfg=<config-URL>
 
 For example, the client could respond with one header informing the server that the person operating the client has a Google OpenID authentication provider:
 
 	GET / HTTP/1.1
 	Host: example.com
-	Sec-PD: OpenIDConnect, "https://google.com/cdf.toml"
+	Sec-PD: type=OpenIDConnect; cfg="https://google.com/cdf.toml"
 
-##### Provider-Announce flow
+##### Announce flow
 
 A client user agent can proactively announce that it supports AgeProtectv1 by including a header of the form: Sec-PD: AgeProtectv1. For example:
 
 	GET / HTTP/1.1
 	Host: example.com
-	Sec-PD: AgeProtectv1
+	Sec-PD: type=AgeProtectv1
 
 #### Mobile implementation
 
