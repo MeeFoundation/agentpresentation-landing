@@ -11,22 +11,22 @@ There are two kinds of flows, *discovery* and *announcement*.
 
 The *provider discovery* flow is as follows:
 
-1. The server sends to the client a list of one or more *provider-types* that it supports
-2. In response, the client sends a list of zero or more provider-types matching the those sent by the server that it (the client) supports. 
+1. The server sends to the client a list of one or more `provider-types` that it supports
+2. In response, the client sends a list of zero or more `provider-types` matching the those sent by the server that it (the client) supports. 
 
 Note: the person's client response (in #2 above) may return different triples to different servers. 
 
 The *provider announcement* flow is as follows:
 
-1. The client sends a list of zero or more provider-types that it supports. 
+1. The client sends a list of zero or more `provider-types` that it supports. 
 
 Since the announcement flow discloses information which could be used for fingerprinting by the server, it should be used only in exceptional cases.
 
-In either flow, for each provider-type in the list sent by by client, a *config-URL* key-value parameter may be provided along with zero or more other key-value pairs specific to this provider-type.
+In either flow, for each provider-type in the list sent by by client, a `config-url` key-value parameter may be provided along with zero or more other key-value pairs specific to this provider-type.
 
 **Provider-type**
 
-The provider-type must be one of the following:
+The `provider-type` must be one of the following:
 
 - "OpenIDConnect" - the person has an OpenID provider
 - "SIOPv2" - the person has a self-issued OpenID provider 
@@ -35,7 +35,7 @@ The provider-type must be one of the following:
 
 **Config-url**
 
-The config-url is a URL that resolves to an *Provider Configuration File* (see below)
+The `config-url` is a URL that resolves to an *Provider Configuration File* (see section below).
 
 #### Web implementation
 
@@ -50,7 +50,7 @@ Accept-PD: type=OpenIDConnect
 
 In response, a client could append one or more Provider Discovery headers whose `provider-type` is OpendIDConnect in every HTTP request of the form:
 
-Sec-PD: type=OpenIDConnect; cfg=<config-URL>
+Sec-PD: type=OpenIDConnect; cfg=<config-URL>; [<key>=<value>;]*
 
 For example, the client could respond with one header informing the server that the person operating the client has a Google OpenID authentication provider:
 
