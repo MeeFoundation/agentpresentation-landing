@@ -60,7 +60,7 @@ For example, the client could respond with one header informing the server that 
 
 ##### Announce flow
 
-A client user agent can proactively announce that it supports AgeProtectv1 by including a header of the form: Sec-PD: AgeProtectv1. For example:
+A client user agent can proactively announce that it supports AgeProtectv1 by including a header of the form: Sec-PD: type=AgeProtectv1. For example:
 
 	GET / HTTP/1.1
 	Host: example.com
