@@ -116,13 +116,13 @@
       <h1 id="specification">Specification</h1>
 <p>Assume a person employs one or more <em>providers</em> (e.g. authentication provider, wallet provider, age verification provider, etc.) as part of their interactions with mobile apps or web servers (<em>servers</em>) using a <em>client</em> (web browser or mobile OS).  Provider Discovery is a specification that defines how the <em>server</em> can learn of the existence of these providers, and in some cases, characteristics of the provider.</p>
 <p>There are two kinds of flows: <em>discovery</em> and <em>announcement</em>.</p>
-<p>The <em>provider discovery</em> flow is as follows:</p>
+<p>The <em>discovery</em> flow is as follows:</p>
 <ol>
 <li>The server sends to the client a list of one or more <code>provider-types</code> that it supports</li>
 <li>In response, the client sends a list of zero or more <code>provider-types</code> matching the those sent by the server that it (the client) supports.</li>
 </ol>
 <p>Note: the person may configure their client to return different responses (in #2 above) to different servers.</p>
-<p>The <em>provider announcement</em> flow is as follows:</p>
+<p>The <em>announcement</em> flow is as follows:</p>
 <ol>
 <li>The client sends a list of zero or more <code>provider-types</code> that it supports.</li>
 </ol>
