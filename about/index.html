@@ -137,26 +137,8 @@
 <li>TBD…</li>
 </ul>
 <p><strong>Config-url</strong></p>
-<p>The <code>config-url</code> is a URL that resolves to an <em>Provider Configuration File</em> (see section below).</p>
-<h4 id="web-implementation">Web implementation</h4>
-<h5 id="discovery-flow">Discovery flow</h5>
-<p>A server must announce that is supports Provider Discovery using the <code>Accept-PD</code> header. For example:</p>
-<pre class="astro-code one-dark-pro" is:raw="" style="white-space:pre-wrap;word-wrap:break-word;background-color:#282c34;overflow-x:auto" tabindex="0"><code><span class="line"><span style="color:#abb2bf">HTTP/1.1 200 OK</span></span>
-<span class="line"><span style="color:#abb2bf">Accept-PD: type=OpenIDConnect</span></span></code></pre>
-<p>In response, a client could append one or more Provider Discovery headers whose <code>provider-type</code> is OpendIDConnect in every HTTP request of the form:</p>
-<p>Sec-PD: type=OpenIDConnect; cfg=<em>config-url</em>;  [<em>key</em>=<em>value</em>;]*</p>
-<p>For example, the client could respond with one header informing the server that the person operating the client has a Google OpenID authentication provider:</p>
-<pre class="astro-code one-dark-pro" is:raw="" style="white-space:pre-wrap;word-wrap:break-word;background-color:#282c34;overflow-x:auto" tabindex="0"><code><span class="line"><span style="color:#abb2bf">GET / HTTP/1.1</span></span>
-<span class="line"><span style="color:#abb2bf">Host: example.com</span></span>
-<span class="line"><span style="color:#abb2bf">Sec-PD: type=OpenIDConnect; cfg="https://google.com/pcf.toml"</span></span></code></pre>
-<h5 id="announce-flow">Announce flow</h5>
-<p>A client user agent can proactively announce that it supports AgeProtectv1 by including a header of the form: Sec-PD: type=AgeProtectv1. For example:</p>
-<pre class="astro-code one-dark-pro" is:raw="" style="white-space:pre-wrap;word-wrap:break-word;background-color:#282c34;overflow-x:auto" tabindex="0"><code><span class="line"><span style="color:#abb2bf">GET / HTTP/1.1</span></span>
-<span class="line"><span style="color:#abb2bf">Host: example.com</span></span>
-<span class="line"><span style="color:#abb2bf">Sec-PD: type=AgeProtectv1</span></span></code></pre>
-<h4 id="mobile-implementation">Mobile implementation</h4>
-<p>[To be determined. The mobile OS (iOS, Android, etc.) needs to pass the “Provider” tuples to the app on startup. Perhaps on Android the [Content Provider] (<a href="https://developer.android.com/reference/android/content/ContentProvider">https://developer.android.com/reference/android/content/ContentProvider</a>) API could be used.]</p>
-<h2 id="provider-configuration-file-pcf">Provider Configuration File (PCF)</h2>
+<p>The <code>config-url</code> is a URL that resolves to an <em>Provider Configuration File</em>.</p>
+<h3 id="provider-configuration-file-pcf">Provider Configuration File (PCF)</h3>
 <p>An PCF is a configuration file that contains metadata about one or more of the person’s providers. The file is in TOML format and  has the following required fields:</p>
 <ul>
 <li><em>title</em> - a string of value “Provider Configuration File”</li>
@@ -169,6 +151,24 @@
 <p><code>[SIOPv2]</code>
 <code>image = "https://mee.foundation/continue-with-mee-smartwallet.png"</code>
 <code>SIOPAuthorize = "https://mee.foundation/authorize"</code></p>
+<h2 id="web-implementation">Web implementation</h2>
+<h3 id="discovery-flow">Discovery flow</h3>
+<p>A server must announce that is supports Provider Discovery using the <code>Accept-PD</code> header. For example:</p>
+<pre class="astro-code one-dark-pro" is:raw="" style="white-space:pre-wrap;word-wrap:break-word;background-color:#282c34;overflow-x:auto" tabindex="0"><code><span class="line"><span style="color:#abb2bf">HTTP/1.1 200 OK</span></span>
+<span class="line"><span style="color:#abb2bf">Accept-PD: type=OpenIDConnect</span></span></code></pre>
+<p>In response, a client could append one or more Provider Discovery headers whose <code>provider-type</code> is OpendIDConnect in every HTTP request of the form:</p>
+<p>Sec-PD: type=OpenIDConnect; cfg=<em>config-url</em>;  [<em>key</em>=<em>value</em>;]*</p>
+<p>For example, the client could respond with one header informing the server that the person operating the client has a Google OpenID authentication provider:</p>
+<pre class="astro-code one-dark-pro" is:raw="" style="white-space:pre-wrap;word-wrap:break-word;background-color:#282c34;overflow-x:auto" tabindex="0"><code><span class="line"><span style="color:#abb2bf">GET / HTTP/1.1</span></span>
+<span class="line"><span style="color:#abb2bf">Host: example.com</span></span>
+<span class="line"><span style="color:#abb2bf">Sec-PD: type=OpenIDConnect; cfg="https://google.com/pcf.toml"</span></span></code></pre>
+<h3 id="announce-flow">Announce flow</h3>
+<p>A client user agent can proactively announce that it supports AgeProtectv1 by including a header of the form: Sec-PD: type=AgeProtectv1. For example:</p>
+<pre class="astro-code one-dark-pro" is:raw="" style="white-space:pre-wrap;word-wrap:break-word;background-color:#282c34;overflow-x:auto" tabindex="0"><code><span class="line"><span style="color:#abb2bf">GET / HTTP/1.1</span></span>
+<span class="line"><span style="color:#abb2bf">Host: example.com</span></span>
+<span class="line"><span style="color:#abb2bf">Sec-PD: type=AgeProtectv1</span></span></code></pre>
+<h2 id="mobile-implementation">Mobile implementation</h2>
+<p>[To be written. The mobile OS (iOS, Android, etc.) needs to implement the flows on startup. Perhaps on Android the [Content Provider] (<a href="https://developer.android.com/reference/android/content/ContentProvider">https://developer.android.com/reference/android/content/ContentProvider</a>) API could be used. As for iOS…just more questions than answers.]</p>
     </section>
   </main>
   <footer class="astro-SZ7XMLTE mt-auto">
