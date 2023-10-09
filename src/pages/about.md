@@ -14,7 +14,7 @@ The *provider discovery* flow is as follows:
 1. The server sends to the client a list of one or more `provider-types` that it supports
 2. In response, the client sends a list of zero or more `provider-types` matching the those sent by the server that it (the client) supports. 
 
-Note: the person's client response (in #2 above) may return different triples to different servers. 
+Note: the person may configure their client to return different responses (in #2 above) to different servers. 
 
 The *provider announcement* flow is as follows:
 
