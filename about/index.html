@@ -144,11 +144,11 @@
 <pre class="astro-code one-dark-pro" is:raw="" style="white-space:pre-wrap;word-wrap:break-word;background-color:#282c34;overflow-x:auto" tabindex="0"><code><span class="line"><span style="color:#abb2bf">HTTP/1.1 200 OK</span></span>
 <span class="line"><span style="color:#abb2bf">Accept-PD: type=OpenIDConnect</span></span></code></pre>
 <p>In response, a client could append one or more Provider Discovery headers whose <code>provider-type</code> is OpendIDConnect in every HTTP request of the form:</p>
-<p>Sec-PD: type=OpenIDConnect; cfg=<config-url>; [<key>=<value>;]*</value></key></config-url></p>
+<p>Sec-PD: type=OpenIDConnect; cfg=<em>config-url</em>;  [<em>key</em>=<em>value</em>;]*</p>
 <p>For example, the client could respond with one header informing the server that the person operating the client has a Google OpenID authentication provider:</p>
 <pre class="astro-code one-dark-pro" is:raw="" style="white-space:pre-wrap;word-wrap:break-word;background-color:#282c34;overflow-x:auto" tabindex="0"><code><span class="line"><span style="color:#abb2bf">GET / HTTP/1.1</span></span>
 <span class="line"><span style="color:#abb2bf">Host: example.com</span></span>
-<span class="line"><span style="color:#abb2bf">Sec-PD: type=OpenIDConnect; cfg="https://google.com/cdf.toml"</span></span></code></pre>
+<span class="line"><span style="color:#abb2bf">Sec-PD: type=OpenIDConnect; cfg="https://google.com/pcf.toml"</span></span></code></pre>
 <h5 id="announce-flow">Announce flow</h5>
 <p>A client user agent can proactively announce that it supports AgeProtectv1 by including a header of the form: Sec-PD: AgeProtectv1. For example:</p>
 <pre class="astro-code one-dark-pro" is:raw="" style="white-space:pre-wrap;word-wrap:break-word;background-color:#282c34;overflow-x:auto" tabindex="0"><code><span class="line"><span style="color:#abb2bf">GET / HTTP/1.1</span></span>
