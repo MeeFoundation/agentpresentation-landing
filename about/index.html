@@ -114,58 +114,46 @@
     <section class="max-w-3xl mb-28 prose prose-img:border-0" id="about">
       <h1 class="sm:text-3xl text-2xl tracking-wider">Provider Discovery</h1>
       <h1 id="specification">Specification</h1>
-<p>Provider Discovery is a specification that defines how an app/site can discover information about one or more authentication, digital wallet, age verification, or other types of providers a person chooses to disclose to this app/site via the browser/OS they are using to interact with it.</p>
-<p>Terminology</p>
-<ul>
-<li>server: the web server or mobile app</li>
-<li>client: a user agent (e.g. browser) in web scenarios or the mobile OS in mobile app scenarios</li>
-</ul>
-<p>It also supports an alternate flow called <em>provider announcement</em>. This allows the client to  proactively announce support for one or more types of providers without being requested by the server. Since this feature discloses information which could be used for fingerprinting by the server it should be used only in exceptional cases.</p>
-<p>The normal <em>provider discovery</em> flow is as follows:</p>
+<p>Assume a person employs one or more <em>providers</em> (e.g. authentication provider, wallet provider, age verification provider, etc.) as part of their interactions with mobile apps or web servers (<em>servers</em>) using a <em>client</em> (web browser or mobile OS).  Provider Discovery is a specification that defines how the <em>server</em> can learn of the existence of these providers, and in some cases, characteristics of the provider.</p>
+<p>There are two kinds of flows, <em>discovery</em> and <em>announcement</em>.</p>
+<p>The <em>provider discovery</em> flow is as follows:</p>
 <ol>
-<li>
-<p>The server announces to the client that it supports Provider Discovery including the set of one or more types of providers that it supports</p>
-</li>
-<li>
-<p>The client includes one or more triples of the form {<code>provider-discovery</code>, <code>provider-type,</code> <em><code>config</code></em>}</p>
-</li>
+<li>The server sends to the client a list of one or more <em>provider-types</em> that it supports</li>
+<li>In response, the client sends a list of zero or more provider-types matching the those sent by the server that it (the client) supports.</li>
 </ol>
-<p>The <em>provider announcement</em> flow is the same as above, except step #1 is eliminated.</p>
-<p>Where:</p>
-<ul>
-<li>
-<p><code>provider-discovery</code>: a label indicating that this is a Provider Discovery triple</p>
-</li>
-<li>
-<p><code>provider-type</code>: the type of provider. Values must be one of the following:</p>
+<p>Note: the person’s client response (in #2 above) may return different triples to different servers.</p>
+<p>The <em>provider announcement</em> flow is as follows:</p>
+<ol>
+<li>The client sends a list of zero or more provider-types that it supports.</li>
+</ol>
+<p>Since the announcement flow discloses information which could be used for fingerprinting by the server, it should be used only in exceptional cases.</p>
+<p>In either flow, for each provider-type in the list sent by by client, a <em>config-URL</em> key-value parameter may be provided along with zero or more other key-value pairs specific to this provider-type.</p>
+<p><strong>Provider-type</strong></p>
+<p>The provider-type must be one of the following:</p>
 <ul>
 <li>“OpenIDConnect” - the person has an OpenID provider</li>
 <li>“SIOPv2” - the person has a self-issued OpenID provider</li>
 <li>“AgeProtectv1” - the person has an age verification service provider</li>
 <li>TBD…</li>
 </ul>
-</li>
-<li>
-<p><code>config</code>: a URL that resolves to an Capability Discovery File</p>
-</li>
-</ul>
-<p>Note: the person’s client may be configured to return different triples to different servers.</p>
+<p><strong>Config-url</strong></p>
+<p>The config-url is a URL that resolves to an <em>Provider Configuration File</em> (see below)</p>
 <h4 id="web-implementation">Web implementation</h4>
-<h5 id="normal-flow">Normal flow</h5>
+<h5 id="discovery-flow">Discovery flow</h5>
 <p>A server must announce that is supports Provider Discovery using the <code>Accept-PD</code> header. For example:</p>
 <pre class="astro-code one-dark-pro" is:raw="" style="white-space:pre-wrap;word-wrap:break-word;background-color:#282c34;overflow-x:auto" tabindex="0"><code><span class="line"><span style="color:#abb2bf">HTTP/1.1 200 OK</span></span>
-<span class="line"><span style="color:#abb2bf">Accept-PD: OpenIDConnect</span></span></code></pre>
+<span class="line"><span style="color:#abb2bf">Accept-PD: type=OpenIDConnect</span></span></code></pre>
 <p>In response, a client could append one or more Provider Discovery headers whose <code>provider-type</code> is OpendIDConnect in every HTTP request of the form:</p>
-<p>Sec-PD: OpenIDConnect, <config></config></p>
+<p>Sec-PD: type=OpenIDConnect; cfg=<config-url></config-url></p>
 <p>For example, the client could respond with one header informing the server that the person operating the client has a Google OpenID authentication provider:</p>
 <pre class="astro-code one-dark-pro" is:raw="" style="white-space:pre-wrap;word-wrap:break-word;background-color:#282c34;overflow-x:auto" tabindex="0"><code><span class="line"><span style="color:#abb2bf">GET / HTTP/1.1</span></span>
 <span class="line"><span style="color:#abb2bf">Host: example.com</span></span>
-<span class="line"><span style="color:#abb2bf">Sec-PD: OpenIDConnect, "https://google.com/cdf.toml"</span></span></code></pre>
-<h5 id="provider-announce-flow">Provider-Announce flow</h5>
+<span class="line"><span style="color:#abb2bf">Sec-PD: type=OpenIDConnect; cfg="https://google.com/cdf.toml"</span></span></code></pre>
+<h5 id="announce-flow">Announce flow</h5>
 <p>A client user agent can proactively announce that it supports AgeProtectv1 by including a header of the form: Sec-PD: AgeProtectv1. For example:</p>
 <pre class="astro-code one-dark-pro" is:raw="" style="white-space:pre-wrap;word-wrap:break-word;background-color:#282c34;overflow-x:auto" tabindex="0"><code><span class="line"><span style="color:#abb2bf">GET / HTTP/1.1</span></span>
 <span class="line"><span style="color:#abb2bf">Host: example.com</span></span>
-<span class="line"><span style="color:#abb2bf">Sec-PD: AgeProtectv1</span></span></code></pre>
+<span class="line"><span style="color:#abb2bf">Sec-PD: type=AgeProtectv1</span></span></code></pre>
 <h4 id="mobile-implementation">Mobile implementation</h4>
 <p>[To be determined. The mobile OS (iOS, Android, etc.) needs to pass the “Provider” tuples to the app on startup. Perhaps on Android the [Content Provider] (<a href="https://developer.android.com/reference/android/content/ContentProvider">https://developer.android.com/reference/android/content/ContentProvider</a>) API could be used.]</p>
 <h2 id="provider-configuration-file-pcf">Provider Configuration File (PCF)</h2>
