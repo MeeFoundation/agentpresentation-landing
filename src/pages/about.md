@@ -50,13 +50,13 @@ Accept-PD: type=OpenIDConnect
 
 In response, a client could append one or more Provider Discovery headers whose `provider-type` is OpendIDConnect in every HTTP request of the form:
 
-Sec-PD: type=OpenIDConnect; cfg=<config-URL>; [<key>=<value>;]*
+Sec-PD: type=OpenIDConnect; cfg=*config-url*;  [*key*=*value*;]*
 
 For example, the client could respond with one header informing the server that the person operating the client has a Google OpenID authentication provider:
 
 	GET / HTTP/1.1
 	Host: example.com
-	Sec-PD: type=OpenIDConnect; cfg="https://google.com/cdf.toml"
+	Sec-PD: type=OpenIDConnect; cfg="https://google.com/pcf.toml"
 
 ##### Announce flow
 
