@@ -9,14 +9,14 @@ Assume a person employs one or more *providers* (e.g. authentication provider, w
 
 There are two kinds of flows: *discovery* and *announcement*. 
 
-The *provider discovery* flow is as follows:
+The *discovery* flow is as follows:
 
 1. The server sends to the client a list of one or more `provider-types` that it supports
 2. In response, the client sends a list of zero or more `provider-types` matching the those sent by the server that it (the client) supports. 
 
 Note: the person may configure their client to return different responses (in #2 above) to different servers. 
 
-The *provider announcement* flow is as follows:
+The *announcement* flow is as follows:
 
 1. The client sends a list of zero or more `provider-types` that it supports. 
 
