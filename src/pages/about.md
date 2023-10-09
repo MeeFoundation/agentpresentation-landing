@@ -7,7 +7,7 @@ title: "Provider Discovery"
 
 Assume a person employs one or more *providers* (e.g. authentication provider, wallet provider, age verification provider, etc.) as part of their interactions with mobile apps or web servers (*servers*) using a *client* (web browser or mobile OS).  Provider Discovery is a specification that defines how the *server* can learn of the existence of these providers, and in some cases, characteristics of the provider.
 
-There are two kinds of flows, *discovery* and *announcement*. 
+There are two kinds of flows: *discovery* and *announcement*. 
 
 The *provider discovery* flow is as follows:
 
