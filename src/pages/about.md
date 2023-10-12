@@ -31,7 +31,7 @@ The `provider-type` must be one of the following:
 - "OpenIDConnect" - the person has an OpenID provider
 - "SIOPv2" - the person has a self-issued OpenID provider 
 - "AgeProtectv1" - the person has an age verification service provider 
-- TBD...
+- ...TBD
 
 **Config-url**
 
@@ -78,7 +78,7 @@ For example, the client could respond with one header informing the server that 
 
 ### Announce flow
 
-A client user agent can proactively announce that it supports AgeProtectv1 by including a header of the form: Sec-PD: type=AgeProtectv1. For example:
+A client user agent can proactively announce that it uses one or more types of providers by including a header for each of the form: Sec-PD: type=`provider-type`. For example if it wanted to announce that it uses AgeProtectv1 then an example header would be:
 
 	GET / HTTP/1.1
 	Host: example.com
