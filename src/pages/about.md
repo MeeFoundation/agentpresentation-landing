@@ -5,7 +5,7 @@ title: "Provider Discovery"
 
 # Specification
 
-Assume a person employs one or more *providers* (e.g. authentication provider, wallet provider, age verification provider, etc.) as part of their interactions with mobile apps or web servers (*servers*) using a *client* (web browser or mobile OS).  Provider Discovery is a specification that defines how the *server* can learn of the existence of these providers, and in some cases, characteristics of the provider.
+Assume a person employs one or more *providers* (e.g. authentication provider, wallet provider, age verification provider, etc.) as part of their interactions with mobile apps or web servers (*servers*) using a *client* (web browser or mobile OS).  Provider Discovery is a specification that defines how the *server* can learn of the existence of these providers, and in some cases, characteristics about them.
 
 There are two kinds of flows: *discovery* and *announcement*. 
 
@@ -14,7 +14,7 @@ The *discovery* flow is as follows:
 1. The server sends to the client a list of one or more `provider-types` that it supports
 2. In response, the client sends a list of zero or more `provider-types` matching the those sent by the server that it (the client) supports. 
 
-Note: the person may configure their client to return different responses (in #2 above) to different servers. 
+Note: the person may choose to configure their client such that it returns different responses (in #2 above) to different servers. 
 
 The *announcement* flow is as follows:
 
@@ -39,7 +39,7 @@ The `config-url` is a URL that resolves to an *Provider Configuration File*.
 
 ### Provider Configuration File (PCF)
 
-An PCF is a configuration file that contains metadata about one or more of the person's providers. The file is in TOML format and  has the following required fields:
+An PCF is a configuration file that contains metadata about a provider. The file is in TOML format and  has the following required fields:
 
 - *title* - a string of value "Provider Configuration File"
 - *version* - a string indicating the version of the PCF file format
@@ -59,7 +59,7 @@ The rest of the fields in the file are determined by the protocol used by the se
 
 ### Discovery flow
 
-A server must announce that is supports Provider Discovery using the `Accept-PD` header. For example:
+A server must announce that it supports Provider Discovery using the `Accept-PD` header. For example:
 
 ```
 HTTP/1.1 200 OK
@@ -78,7 +78,7 @@ For example, the client could respond with one header informing the server that 
 
 ### Announce flow
 
-A client user agent can proactively announce that it uses one or more types of providers by including a header for each of the form: Sec-PD: type=`provider-type`. For example if it wanted to announce that it uses AgeProtectv1 then an example header would be:
+A client user agent can proactively announce that it uses one or more types of providers by including a header for each of the form: Sec-PD: type=`provider-type`. For example if it wanted to announce that it uses an AgeProtectv1 provider then it could send this header:
 
 	GET / HTTP/1.1
 	Host: example.com
