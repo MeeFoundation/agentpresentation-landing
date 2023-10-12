@@ -134,7 +134,7 @@
 <li>“OpenIDConnect” - the person has an OpenID provider</li>
 <li>“SIOPv2” - the person has a self-issued OpenID provider</li>
 <li>“AgeProtectv1” - the person has an age verification service provider</li>
-<li>TBD…</li>
+<li>…TBD</li>
 </ul>
 <p><strong>Config-url</strong></p>
 <p>The <code>config-url</code> is a URL that resolves to an <em>Provider Configuration File</em>.</p>
@@ -163,7 +163,7 @@
 <span class="line"><span style="color:#abb2bf">Host: example.com</span></span>
 <span class="line"><span style="color:#abb2bf">Sec-PD: type=OpenIDConnect; cfg="https://google.com/pcf.toml"</span></span></code></pre>
 <h3 id="announce-flow">Announce flow</h3>
-<p>A client user agent can proactively announce that it supports AgeProtectv1 by including a header of the form: Sec-PD: type=AgeProtectv1. For example:</p>
+<p>A client user agent can proactively announce that it uses one or more types of providers by including a header for each of the form: Sec-PD: type=<code>provider-type</code>. For example if it wanted to announce that it uses AgeProtectv1 then an example header would be:</p>
 <pre class="astro-code one-dark-pro" is:raw="" style="white-space:pre-wrap;word-wrap:break-word;background-color:#282c34;overflow-x:auto" tabindex="0"><code><span class="line"><span style="color:#abb2bf">GET / HTTP/1.1</span></span>
 <span class="line"><span style="color:#abb2bf">Host: example.com</span></span>
 <span class="line"><span style="color:#abb2bf">Sec-PD: type=AgeProtectv1</span></span></code></pre>
