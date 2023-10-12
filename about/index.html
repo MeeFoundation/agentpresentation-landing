@@ -114,14 +114,14 @@
     <section class="max-w-3xl mb-28 prose prose-img:border-0" id="about">
       <h1 class="sm:text-3xl text-2xl tracking-wider">Provider Discovery</h1>
       <h1 id="specification">Specification</h1>
-<p>Assume a person employs one or more <em>providers</em> (e.g. authentication provider, wallet provider, age verification provider, etc.) as part of their interactions with mobile apps or web servers (<em>servers</em>) using a <em>client</em> (web browser or mobile OS).  Provider Discovery is a specification that defines how the <em>server</em> can learn of the existence of these providers, and in some cases, characteristics of the provider.</p>
+<p>Assume a person employs one or more <em>providers</em> (e.g. authentication provider, wallet provider, age verification provider, etc.) as part of their interactions with mobile apps or web servers (<em>servers</em>) using a <em>client</em> (web browser or mobile OS).  Provider Discovery is a specification that defines how the <em>server</em> can learn of the existence of these providers, and in some cases, characteristics about them.</p>
 <p>There are two kinds of flows: <em>discovery</em> and <em>announcement</em>.</p>
 <p>The <em>discovery</em> flow is as follows:</p>
 <ol>
 <li>The server sends to the client a list of one or more <code>provider-types</code> that it supports</li>
 <li>In response, the client sends a list of zero or more <code>provider-types</code> matching the those sent by the server that it (the client) supports.</li>
 </ol>
-<p>Note: the person may configure their client to return different responses (in #2 above) to different servers.</p>
+<p>Note: the person may choose to configure their client such that it returns different responses (in #2 above) to different servers.</p>
 <p>The <em>announcement</em> flow is as follows:</p>
 <ol>
 <li>The client sends a list of zero or more <code>provider-types</code> that it supports.</li>
@@ -139,7 +139,7 @@
 <p><strong>Config-url</strong></p>
 <p>The <code>config-url</code> is a URL that resolves to an <em>Provider Configuration File</em>.</p>
 <h3 id="provider-configuration-file-pcf">Provider Configuration File (PCF)</h3>
-<p>An PCF is a configuration file that contains metadata about one or more of the person’s providers. The file is in TOML format and  has the following required fields:</p>
+<p>An PCF is a configuration file that contains metadata about a provider. The file is in TOML format and  has the following required fields:</p>
 <ul>
 <li><em>title</em> - a string of value “Provider Configuration File”</li>
 <li><em>version</em> - a string indicating the version of the PCF file format</li>
@@ -153,7 +153,7 @@
 <code>SIOPAuthorize = "https://mee.foundation/authorize"</code></p>
 <h2 id="web-implementation">Web implementation</h2>
 <h3 id="discovery-flow">Discovery flow</h3>
-<p>A server must announce that is supports Provider Discovery using the <code>Accept-PD</code> header. For example:</p>
+<p>A server must announce that it supports Provider Discovery using the <code>Accept-PD</code> header. For example:</p>
 <pre class="astro-code one-dark-pro" is:raw="" style="white-space:pre-wrap;word-wrap:break-word;background-color:#282c34;overflow-x:auto" tabindex="0"><code><span class="line"><span style="color:#abb2bf">HTTP/1.1 200 OK</span></span>
 <span class="line"><span style="color:#abb2bf">Accept-PD: type=OpenIDConnect</span></span></code></pre>
 <p>In response, a client could append one or more Provider Discovery headers whose <code>provider-type</code> is OpendIDConnect in every HTTP request of the form:</p>
@@ -163,7 +163,7 @@
 <span class="line"><span style="color:#abb2bf">Host: example.com</span></span>
 <span class="line"><span style="color:#abb2bf">Sec-PD: type=OpenIDConnect; cfg="https://google.com/pcf.toml"</span></span></code></pre>
 <h3 id="announce-flow">Announce flow</h3>
-<p>A client user agent can proactively announce that it uses one or more types of providers by including a header for each of the form: Sec-PD: type=<code>provider-type</code>. For example if it wanted to announce that it uses AgeProtectv1 then an example header would be:</p>
+<p>A client user agent can proactively announce that it uses one or more types of providers by including a header for each of the form: Sec-PD: type=<code>provider-type</code>. For example if it wanted to announce that it uses an AgeProtectv1 provider then it could send this header:</p>
 <pre class="astro-code one-dark-pro" is:raw="" style="white-space:pre-wrap;word-wrap:break-word;background-color:#282c34;overflow-x:auto" tabindex="0"><code><span class="line"><span style="color:#abb2bf">GET / HTTP/1.1</span></span>
 <span class="line"><span style="color:#abb2bf">Host: example.com</span></span>
 <span class="line"><span style="color:#abb2bf">Sec-PD: type=AgeProtectv1</span></span></code></pre>
